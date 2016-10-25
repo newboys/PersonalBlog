@@ -7,4 +7,6 @@
 * Protocol
 * KVC/KVO
 * Notification
+* assing/strong/weak/copy
+
 
