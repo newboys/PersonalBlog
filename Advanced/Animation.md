@@ -14,3 +14,10 @@
 * 透明套罩
 * 多级非线性动画
 
+3、寄宿图(图层中包含的图)
+
+* contents
+* contentMode(view)
+* contentsGravity(layer):内容在图层边界中怎么对齐
+* contentsScale
+
