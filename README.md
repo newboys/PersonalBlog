@@ -4,7 +4,7 @@
 
 ## Basic
 
-* iOS shortcut(快捷键)(https://github.com/fengzhihao123/LearniOS/blob/master/Basic/iOSshortcut.md)
+* [iOS shortcut(快捷键)](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/iOSshortcut.md)
 * [Category/Extension](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/Category:Extension.md)
 * Sigleton
 * Protocol
