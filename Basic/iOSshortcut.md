@@ -10,15 +10,16 @@ iOS快捷键
 	
 ### Xcode中的快捷键
 
+#### 1、Xcode主页面管理快捷键
+* command + ,:打开Preferences
+* command + h:隐藏Xcode
+* Option + Command + H:隐藏除了Xcode的其他应用
+* command + q:u退出Xcode
+
+#### 2、
+
+参考：
+[官网](https://developer.apple.com/library/prerelease/content/documentation/IDEs/Conceptual/xcode_help-command_shortcuts/MenuCommands/MenuCommands014.html#//apple_ref/doc/uid/TP40010560-CH2-SW4)
 
 ### 平常使用时的快捷键
-
-#### 关机
-* `Control+电源按钮`:显示重新启动/睡眠/关闭对话框
-* `Command+Control+电源按钮`:强制 Mac 重新启动
-* `Command+Option+电源按钮`:使电脑进入睡眠状态
-* `Command+Control+电源按钮`:退出所有 app（会让您先存储对已打开文稿所作的更改），然后重新启动电脑
-* `Command+Option+Control+电源按钮`:退出所有 app（会让您先存储对已打开文稿所作的更改），然后关闭电脑
-* `Shift+Control+电源按钮`:	使所有显示器进入睡眠状态
-* `Command+Shift+Q`:注销
-* `Command+Shift+Option+Q`:立即注销
+[apple](https://support.apple.com/zh-cn/HT201236)
