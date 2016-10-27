@@ -7,7 +7,7 @@
 * Protocol
 * KVC/KVO
 * Notification
-* assing/strong/weak/copy
+* property的修饰词
 
 ## UI
 * UILabel
