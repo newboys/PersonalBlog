@@ -43,10 +43,10 @@ typedef struct category_t {
 
 从category的定义也可以看出category的可为（可以添加实例方法，类方法，甚至可以实现协议，添加属性）和不可为（无法添加实例变量）.
 
-#### 2）如果特殊情况必须添加？如何解决？
+#### 2）如果添加`property`？
 解决办法:`我们可以Runtime的objc_getAssociatedObject和objc_setAssociatedObject方法来模拟属性的get和set方法，用关联对象来模拟实例变量，这样就有了@property的三要素，只是跟@property的实现机制是完全不一样的。`
 
-##### 添加property的两种方法
+##### 添加`property`的两种方法
 * 第一种
 ```
 //.h文件：
