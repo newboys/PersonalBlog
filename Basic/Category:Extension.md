@@ -6,8 +6,8 @@ iOS Knowledge
 <h5><a href="#C012">2、category的缺点</a></h5>
 <h5><a href="#C013">3、使用Category需要注意的地方</a></h5>
 <h4><a href="#C02">二、Extensions </a></h4>
-<h5><a href="#C021">1、使用Category需要注意的地方</a></h5>
-<h5><a href="#C022">2、使用Category需要注意的地方</a></h5>
+<h5><a href="#C021">1、什么是Extension </a></h5>
+<h5><a href="#C022">2、Extension的作用</a></h5>
 <h4><a href="#C03">三、总结</a></h4>
 <h4><a href="#C04">四、参考链接</a></h4>
 
