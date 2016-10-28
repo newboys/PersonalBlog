@@ -1,11 +1,15 @@
 # LearniOS
 iOS Knowledge
-目录
+### 目录
 <h4><a href="#C01">一、Category </a></h4>
 <h5><a href="#C011">1、category的作用</a></h5>
-<h5><a href="#C012">1、category的缺点</a></h5>
-<h5><a href="#C011">3、使用Category需要注意的地方</a></h5>
+<h5><a href="#C012">2、category的缺点</a></h5>
+<h5><a href="#C013">3、使用Category需要注意的地方</a></h5>
 <h4><a href="#C02">二、Extensions </a></h4>
+<h5><a href="#C021">1、使用Category需要注意的地方</a></h5>
+<h5><a href="#C022">2、使用Category需要注意的地方</a></h5>
+<h4><a href="#C03">三、总结</a></h4>
+<h4><a href="#C04">四、参考链接</a></h4>
 
 
 <h2><a name="C01"> 一、Category</a> </h2>
@@ -101,7 +105,7 @@ static void *UIViewPoint =@"UIViewPoint";
 
 <h2><a name="C02"> 二、Extensions(OC) </a> </h2>
 
-### 1、什么是Extension
+<h3><a name="C021"> 1、什么是Extension </a> </h3>
 虽然类的extention形式上和category有点类似，但是你只能给在编译阶段有源码的类添加extension(extension和类在编译阶段同时编译),所以你不能给framework中的类添加extension(eg:Cocoa或者Cocoa Touch中的NSString，因为你没有NSString的源码),在extension声明的方法必须在原始类的@implementation块中实现。
 extensions的声明语法和category的语法比较相似，代码示例:
 ```
@@ -135,12 +139,16 @@ extensions的声明语法和category的语法比较相似，代码示例:
 @end
 ```
 
-### 2、Extension的作用
+<h3><a name="C022"> 2、Extension的作用 </a> </h3>
 
 * 通过使用Extensions来隐藏私有的信息
 
+### <a name="C03">三、总结</a>
 
-### 参考链接
+* category可以通过关联对象的方式添加属性(property)，但是不能添加实例变量(instance variable)。
+* extensions语法结构和category类似，虽然它叫匿名category，但本质不同，category是在运行时加载，而extensions是在编译阶段加载。
+
+### <a name="C04">四、参考链接</a>
 * [Category深度解析](http://www.jianshu.com/p/a263e53bf4ef)
 * [iOS 开发中的争议（一）](http://blog.devtang.com/2015/03/15/ios-dev-controversy-1/)
 * [深入理解Objective-C：Category](http://tech.meituan.com/DiveIntoCategory.html)
