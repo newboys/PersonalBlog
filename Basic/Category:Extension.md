@@ -147,6 +147,7 @@ extensions的声明语法和category的语法比较相似，代码示例:
 
 * category可以通过关联对象的方式添加属性(property)，但是不能添加实例变量(instance variable)。
 * extensions语法结构和category类似，虽然它叫匿名category，但本质不同，category是在运行时加载，而extensions是在编译阶段加载。
+* extensions添加的属性和实例变量都是私有的，只能在主类里面访问。
 
 ### <a name="C04">四、参考链接</a>
 * [Category深度解析](http://www.jianshu.com/p/a263e53bf4ef)
