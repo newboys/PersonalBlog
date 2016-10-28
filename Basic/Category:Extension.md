@@ -2,9 +2,15 @@
 iOS Knowledge
 目录
 <h4><a href="#C01">一、Category </a></h4>
-<h2><a name="C01"> 一、Category</h2>
+<h5><a href="#C011">1、category的作用</a></h5>
+<h5><a href="#C012">1、category的缺点</a></h5>
+<h5><a href="#C011">3、使用Category需要注意的地方</a></h5>
+<h4><a href="#C02">二、Extensions </a></h4>
 
-### 1、Category的作用
+
+<h2><a name="C01"> 一、Category</a> </h2>
+
+<h3><a name="C011"> 1、Category的作用 </a> </h3>
 #### 1）给已经存在的类添加方法
 #### 2）将类的实现分开写在几个分类里面
 这样做的好处:
@@ -16,7 +22,7 @@ iOS Knowledge
 
 #### 3）声明私有的方法
 
-### 2、Category的缺点
+<h3><a name="C012">  2、Category的缺点 </a> </h3>
 #### 1）不能给相应的类添加`instance variable`
 如果你在你的.h文件中写如下代码：
 ```
@@ -87,13 +93,13 @@ static void *UIViewPoint =@"UIViewPoint";
 }
 ```
 
-### 3、使用Category需要注意的地方
+<h3><a name="C013"> 3、使用Category需要注意的地方 </a> </h3>
 
 * 不要定义一个和原有的类一样的方法，这样会覆盖该类的方法。具体原因看此[博客](http://tech.meituan.com/DiveIntoCategory.html)
 * 在Category中是不能添加`instance variables`的。
 * Category是在runtime时候加载，而不是在编译的时候。
 
-## 二、Extensions(OC)
+<h2><a name="C02"> 二、Extensions(OC) </a> </h2>
 
 ### 1、什么是Extension
 虽然类的extention形式上和category有点类似，但是你只能给在编译阶段有源码的类添加extension(extension和类在编译阶段同时编译),所以你不能给framework中的类添加extension(eg:Cocoa或者Cocoa Touch中的NSString，因为你没有NSString的源码),在extension声明的方法必须在原始类的@implementation块中实现。
