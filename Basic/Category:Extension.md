@@ -1,7 +1,8 @@
 # LearniOS
 iOS Knowledge
-
-## 一、Category
+目录
+<h4><a href="#C01">一、Category </a></h4>
+<h2><a name="C01"> 一、Category</h2>
 
 ### 1、Category的作用
 #### 1）给已经存在的类添加方法
@@ -94,7 +95,43 @@ static void *UIViewPoint =@"UIViewPoint";
 
 ## 二、Extensions(OC)
 
+### 1、什么是Extension
+虽然类的extention形式上和category有点类似，但是你只能给在编译阶段有源码的类添加extension(extension和类在编译阶段同时编译),所以你不能给framework中的类添加extension(eg:Cocoa或者Cocoa Touch中的NSString，因为你没有NSString的源码),在extension声明的方法必须在原始类的@implementation块中实现。
+extensions的声明语法和category的语法比较相似，代码示例:
+```
+#import "MyClass.h"
 
+@interface MyClass ()
+@property (nonatomic, copy) NSString *string;
+- (void)printSomething;
+@end
+```
+
+因为在括号中没有名字，Extensions通常被称为`匿名分类`(anonymous categories),不同于category的是，它可以添加`properties`和`instance variables`。
+在编译阶段，编译器会自动合成相关的访问方法，`instance variable`也和方法一样必须在主类的包含在`implementation`模块中。
+如果你在Extensions中添加方法，那么你也必须在主类的`implementation`模块中实现它。
+代码示例：
+```
+#import "MyClass.h"
+#import "MyClass_addStr.h"
+@implementation MyClass
+//实现Extensions中声明的方法,该方法只能在类的内部调用，外面是调用不到得.
+- (void)printSomething{
+    NSLog(@"string is extension");
+}
+
+- (void)classPrint{
+    self.string = @"ssss";
+    [self printSomething];
+    NSLog(@"%@",self.string);
+}
+
+@end
+```
+
+### 2、Extension的作用
+
+* 通过使用Extensions来隐藏私有的信息
 
 
 ### 参考链接
@@ -103,3 +140,5 @@ static void *UIViewPoint =@"UIViewPoint";
 * [深入理解Objective-C：Category](http://tech.meituan.com/DiveIntoCategory.html)
 * [类别(Category)与类扩展 (Extension)的区别](http://www.jianshu.com/p/57d7f1910ef4)
 * [Is there a difference between an “instance variable” and a “property” in Objective-c?](http://stackoverflow.com/questions/843632/is-there-a-difference-between-an-instance-variable-and-a-property-in-objecti)
+* [ASSOCIATED OBJECT](http://swifter.tips/associated-object/)
+* [apple](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/CustomizingExistingClasses/CustomizingExistingClasses.html)
