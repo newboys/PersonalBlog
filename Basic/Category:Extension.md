@@ -1,9 +1,20 @@
 # LearniOS
 iOS Knowledge
+### 目录
+<h4><a href="#C01">一、Category </a></h4>
+<h5><a href="#C011">1、category的作用</a></h5>
+<h5><a href="#C012">2、category的缺点</a></h5>
+<h5><a href="#C013">3、使用Category需要注意的地方</a></h5>
+<h4><a href="#C02">二、Extensions </a></h4>
+<h5><a href="#C021">1、什么是Extension </a></h5>
+<h5><a href="#C022">2、Extension的作用</a></h5>
+<h4><a href="#C03">三、总结</a></h4>
+<h4><a href="#C04">四、参考链接</a></h4>
 
-## 一、Category
 
-### 1、Category的作用
+<h2><a name="C01"> 一、Category</a> </h2>
+
+<h3><a name="C011"> 1、Category的作用 </a> </h3>
 #### 1）给已经存在的类添加方法
 #### 2）将类的实现分开写在几个分类里面
 这样做的好处:
@@ -15,7 +26,7 @@ iOS Knowledge
 
 #### 3）声明私有的方法
 
-### 2、Category的缺点
+<h3><a name="C012">  2、Category的缺点 </a> </h3>
 #### 1）不能给相应的类添加`instance variable`
 如果你在你的.h文件中写如下代码：
 ```
@@ -86,20 +97,63 @@ static void *UIViewPoint =@"UIViewPoint";
 }
 ```
 
-### 3、使用Category需要注意的地方
+<h3><a name="C013"> 3、使用Category需要注意的地方 </a> </h3>
 
 * 不要定义一个和原有的类一样的方法，这样会覆盖该类的方法。具体原因看此[博客](http://tech.meituan.com/DiveIntoCategory.html)
 * 在Category中是不能添加`instance variables`的。
 * Category是在runtime时候加载，而不是在编译的时候。
 
-## 二、Extensions(OC)
+<h2><a name="C02"> 二、Extensions(OC) </a> </h2>
 
+<h3><a name="C021"> 1、什么是Extension </a> </h3>
+虽然类的extention形式上和category有点类似，但是你只能给在编译阶段有源码的类添加extension(extension和类在编译阶段同时编译),所以你不能给framework中的类添加extension(eg:Cocoa或者Cocoa Touch中的NSString，因为你没有NSString的源码),在extension声明的方法必须在原始类的@implementation块中实现。
+extensions的声明语法和category的语法比较相似，代码示例:
+```
+#import "MyClass.h"
 
+@interface MyClass ()
+@property (nonatomic, copy) NSString *string;
+- (void)printSomething;
+@end
+```
 
+因为在括号中没有名字，Extensions通常被称为`匿名分类`(anonymous categories),不同于category的是，它可以添加`properties`和`instance variables`。
+在编译阶段，编译器会自动合成相关的访问方法，`instance variable`也和方法一样必须在主类的包含在`implementation`模块中。
+如果你在Extensions中添加方法，那么你也必须在主类的`implementation`模块中实现它。
+代码示例：
+```
+#import "MyClass.h"
+#import "MyClass_addStr.h"
+@implementation MyClass
+//实现Extensions中声明的方法,该方法只能在类的内部调用，外面是调用不到得.
+- (void)printSomething{
+    NSLog(@"string is extension");
+}
 
-### 参考链接
+- (void)classPrint{
+    self.string = @"ssss";
+    [self printSomething];
+    NSLog(@"%@",self.string);
+}
+
+@end
+```
+
+<h3><a name="C022"> 2、Extension的作用 </a> </h3>
+
+* 通过使用Extensions来隐藏私有的信息
+
+### <a name="C03">三、总结</a>
+
+* category可以通过关联对象的方式添加属性(property)，但是不能添加实例变量(instance variable)。
+* extensions语法结构和category类似，虽然它叫匿名category，但本质不同，category是在运行时加载，而extensions是在编译阶段加载。
+* extensions添加的属性和实例变量都是私有的，只能在主类里面访问。
+
+### <a name="C04">四、参考链接</a>
 * [Category深度解析](http://www.jianshu.com/p/a263e53bf4ef)
 * [iOS 开发中的争议（一）](http://blog.devtang.com/2015/03/15/ios-dev-controversy-1/)
 * [深入理解Objective-C：Category](http://tech.meituan.com/DiveIntoCategory.html)
 * [类别(Category)与类扩展 (Extension)的区别](http://www.jianshu.com/p/57d7f1910ef4)
 * [Is there a difference between an “instance variable” and a “property” in Objective-c?](http://stackoverflow.com/questions/843632/is-there-a-difference-between-an-instance-variable-and-a-property-in-objecti)
+* [ASSOCIATED OBJECT](http://swifter.tips/associated-object/)
+* [apple](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/CustomizingExistingClasses/CustomizingExistingClasses.html)
