@@ -7,7 +7,8 @@
 * [iOS shortcut(快捷键)](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/iOSshortcut.md)
 * [Category/Extension](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/Category:Extension.md)
 * Sigleton
-* 内存计数、ARC
+* 内存管理
+* block
 * Protocol
 * KVC/KVO
 * Notification
