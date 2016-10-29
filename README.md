@@ -7,7 +7,7 @@
 * [iOS shortcut(快捷键)](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/iOSshortcut.md)
 * [Category/Extension](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/Category:Extension.md)
 * Sigleton
-* 内存管理
+* [内存管理](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/内存管理.md)
 * block
 * Protocol
 * KVC/KVO
