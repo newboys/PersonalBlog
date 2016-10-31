@@ -1,6 +1,11 @@
 # property
 
+* readwrite
+
+* readonly
+
 * strong
+
 
 * assign
 * copy
