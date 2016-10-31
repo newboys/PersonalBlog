@@ -26,6 +26,8 @@
 * weak
 
 * assign
+该词修饰基本类型，如：Int、Double等
+Why：assign其实也可以用来修饰对象，那么为什么不用它呢？因为被assign修饰的对象在释放之后，指针的地址还是存在的，也就是说指针并没有被置为nil。如果在后续内存分配中，刚才分到了这块地址，程序就会崩溃掉。而weak修饰的对象在释放之后，指针地址会被置为nil。
 
 * copy
 
@@ -111,4 +113,4 @@
 参考：
 * [《招聘一个靠谱的iOS》面试题参考答案/《招聘一个靠谱的iOS》面试题参考答案（上）.md#11-synthesize和dynamic分别有什么作用](https://github.com/ChenYilong/iOSInterviewQuestions/blob/master/01《招聘一个靠谱的iOS》面试题参考答案/《招聘一个靠谱的iOS》面试题参考答案（上）.md#11-synthesize和dynamic分别有什么作用)
 * [What does @dynamic do in Objective-C? [duplicate]](http://stackoverflow.com/questions/4621952/what-does-dynamic-do-in-objective-c)
-
+* [ios 经典面试题总结 -- 内存管理](http://gold.xitu.io/entry/56d94aa21ea493005dc11e8f)
