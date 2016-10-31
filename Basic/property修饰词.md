@@ -8,7 +8,7 @@
 
 上面两句话是等价的。
 
-* readwrite(该值为o默认值)
+* readwrite(该值为默认值)
 读写：该词修饰的property拥有set和get方法
 
 * readonly
@@ -17,7 +17,7 @@
 * nonatomic
 非原子性：
 
-* atomic(该值为m默认值)
+* atomic(该值为默认值)
 原子性：
 
 * strong(该值为默认值)
