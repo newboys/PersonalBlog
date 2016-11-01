@@ -32,7 +32,7 @@ eg:如果线程A调了getter方法，与此同时拥有不同值线程B、线程
 * weak
 
 用途：常用来定义delegate的属性来避免循环引用。
-为什么IBOut是weak：
+为什么IBOut是weak：因为在你拖拽一个控件的时候，该控件的父视图已经强引用了它，所以你还需要设置为weak即可。
 
 * assign
 该词修饰C的基本数据类型，如：Int、Double等
@@ -40,7 +40,9 @@ Why：assign其实也可以用来修饰对象，那么为什么不用它呢？�
 
 * copy
 
+
 * retain
+
 
 * synthesize
 自动合成set/get方法，此方法配合property。如果你直接用`.`语法来访问这个属性的话，你是没必要写synthesize的，因为点语法实质上就是实现了set/get方法。
