@@ -16,20 +16,30 @@
 
 * atomic(该值为默认值)
 
-原子性：\n
-1）能保证在
+原子性：
+
+1）会保证在别的线程来访问这个属性之前，先执行完当前流程
 
 2）速度慢，因为它要保证操作整体完成
+
 3）并不能真正的保证线程安全
+
 eg:如果线程A调了getter方法，与此同时拥有不同值线程B、线程C都调了setter方法，那最后线程A get到的值，3种都有可能：可能是B C set 之前原始的值，也可能是 B set的值，也可能是C set的值。同样，最终这个属性的值，可能是B set的值，也有可能是C set的值。
+
 * nonatomic
+
 非原子性：
+
 1）速度比aotomic块
+
 2）一般使用该词声明property
+
 3）线程不安全，如果两个线程同时访问一个property会出现无法预料的结果
 
 * strong(该值为默认值)
+
 强引用：strong修饰的变量强引用本身。
+
 循环引用（reference circle）示例代码:
 
 ```
@@ -46,8 +56,11 @@ eg:如果线程A调了getter方法，与此同时拥有不同值线程B、线程
 vc1的strongVC属性引用了vc2，vc2的strongVC属性又引用了vc1。导致vc1e和vc2都不能释放，造成了循环引用。
 
 * weak
+
 弱引用：如果weak修饰的变量指向的对象超出它的作用域，并且没有strong修饰的变量指向该对象的话，weak指向的内存地址会自动置为nil。
+
 代码示例：
+
 1）没有strong修饰的变量指向
 
 ```
@@ -88,10 +101,12 @@ vc1的strongVC属性引用了vc2，vc2的strongVC属性又引用了vc1。导致v
 通过上面代码`2)`可以看出，虽然weak指向的`label`超出了它的作用域，但是`weak2`还是输出了label的相关信息，造成这种情况的原因是有`strong`的变量`_strongLabel`指向了该label的内存地址，所以改地址并没有得到释放，所以`weak`修饰的变量还能访问该内存地址，并没有置为nil。
 
 用途：常用来定义delegate的属性来避免循环引用。
+
 为什么IBOut是weak：因为在你拖拽一个控件的时候，该控件的父视图已经强引用了它，如果你设置为strong，父视图销毁的时候，它并不会销毁，这样不仅没有意义而且消耗内存。所以需要设置为weak即可。
 
 * assign
 该词修饰C的基本数据类型，如：Int、Double等
+
 Why：assign其实也可以用来修饰对象，那么为什么不用它呢？因为被assign修饰的对象在释放之后，指针的地址还是存在的，也就是说指针并没有被置为nil。如果在后续内存分配中，刚才分到了这块地址，程序就会崩溃掉。而weak修饰的对象在释放之后，指针地址会被置为nil。
 
 * copy
@@ -102,7 +117,9 @@ Why：assign其实也可以用来修饰对象，那么为什么不用它呢？�
 
 * synthesize
 自动合成set/get方法，此方法配合property。如果你直接用`.`语法来访问这个属性的话，你是没必要写synthesize的，因为点语法实质上就是实现了set/get方法。
+
 代码示例：
+
 ```
 #import "ViewController.h"
 
@@ -123,7 +140,9 @@ Why：assign其实也可以用来修饰对象，那么为什么不用它呢？�
 ```
 
 * 点语法
+
 代码示例:
+
 ```
 #import "ViewController.h"
 
@@ -145,7 +164,9 @@ Why：assign其实也可以用来修饰对象，那么为什么不用它呢？�
 ```
 
 * dynamic
+
 代码示例:
+
 ```
 #import "ViewController.h"
 #import <objc/runtime.h>
