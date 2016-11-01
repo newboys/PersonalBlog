@@ -94,9 +94,9 @@ vc1的strongVC属性引用了vc2，vc2的strongVC属性又引用了vc1。导致v
 }
 ```
 
-通过上面代码`2)`可以看出，虽然weak指向的`label`超出了它的作用域，但是`weak2`还是输出了label的相关信息，造成这种情况的原因是有`strong`的变量`_strongLabel`指向了该label的内存地址，所以该地址并没有得到释放，所以`weak`修饰的变量还能访问该内存地址，并没有置为nil。
+通过上面第二段代码可以看出，虽然weak指向的`label`超出了它的作用域，但是`weak2`还是输出了label的相关信息，造成这种情况的原因是有`strong`的变量`_strongLabel`指向了该label的内存地址，所以该地址并没有得到释放，所以`weak`修饰的变量还能访问该内存地址，并没有置为nil。
 
-用途：常用来定义delegate的属性来避免循环引用。
+用途：常用来来避免循环引用。
 
 为什么IBOut是weak：因为在你拖拽一个控件的时候，该控件的父视图已经强引用了它，如果你设置为strong，父视图销毁的时候，它并不会销毁，这样不仅没有意义而且消耗内存。所以需要设置为weak即可。
 
@@ -207,3 +207,6 @@ Why：assign其实也可以用来修饰对象，那么为什么不用它呢？�
 * [[爆栈热门iOS问题]atomic和nonatomic有什么区别？](http://www.jianshu.com/p/7288eacbb1a2)
 * [What's the difference between the atomic and nonatomic attributes?](http://stackoverflow.com/questions/588866/whats-the-difference-between-the-atomic-and-nonatomic-attributes/589392#589392)
 * [Differences between strong and weak in Objective-C](http://stackoverflow.com/questions/11013587/differences-between-strong-and-weak-in-objective-c)
+
+声明
+
