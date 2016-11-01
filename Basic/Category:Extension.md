@@ -149,6 +149,7 @@ extensions的声明语法和category的语法比较相似，代码示例:
 * extensions语法结构和category类似，虽然它叫匿名category，但本质不同，category是在运行时加载，而extensions是在编译阶段加载。
 * extensions添加的属性和实例变量都是私有的，只能在主类里面访问。
 
+
 ### <a name="C04">四、参考链接</a>
 * [Category深度解析](http://www.jianshu.com/p/a263e53bf4ef)
 * [iOS 开发中的争议（一）](http://blog.devtang.com/2015/03/15/ios-dev-controversy-1/)
@@ -157,3 +158,5 @@ extensions的声明语法和category的语法比较相似，代码示例:
 * [Is there a difference between an “instance variable” and a “property” in Objective-c?](http://stackoverflow.com/questions/843632/is-there-a-difference-between-an-instance-variable-and-a-property-in-objecti)
 * [ASSOCIATED OBJECT](http://swifter.tips/associated-object/)
 * [apple](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/CustomizingExistingClasses/CustomizingExistingClasses.html)
+### 声明
+本文观点均为个人理解，如有错误还请提个issue指正一下。
