@@ -27,12 +27,56 @@ eg:如果线程A调了getter方法，与此同时拥有不同值线程B、线程
 3）线程不安全，如果两个线程同时访问一个property会出现无法预料的结果
 
 * strong(该值为默认值)
-强引用：
+强引用：strong修饰的变量强引用本身。
+循环引用示例代码:
+
+```
+```
 
 * weak
+弱引用：如果weak修饰的变量指向的对象超出它的作用域，并且没有strong修饰的变量指向该对象的话，weak指向的内存地址会自动置为nil。
+代码示例：
+1）没有strong修饰的变量指向
+
+```
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupLabel];
+    //_weakLabel声明为weak
+    NSLog(@"weak2--%@",_weakLabel);//输出为nil
+}
+
+- (void)setupLabel{
+    UILabel *label = [[UILabel alloc]init];
+    _weakLabel = label;
+    NSLog(@"weak1--%p",_weakLabel);//输出label
+}
+```
+
+2）有strong修饰的变量指向
+
+```
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupLabel];
+    //_weakLabel声明为weak,_strongLabel声明为strong
+    NSLog(@"weak2--%@",_weakLabel);//输出label
+    NSLog(@"strong2--%@",_strongLabel);//输出label
+}
+
+- (void)setupLabel{
+    UILabel *label = [[UILabel alloc]init];
+    _strongLabel = label;
+    _weakLabel = label;
+    NSLog(@"weak1--%p",_weakLabel);//输出label
+    NSLog(@"strong1--%p",_strongLabel);//输出label
+}
+```
+
+通过上面代码`2)`可以看出，虽然weak指向的`label`超出了它的作用域，但是`weak2`还是输出了label的相关信息，造成这种情况的原因是有`strong`的变量`_strongLabel`指向了该label的内存地址，所以改地址并没有得到释放，所以`weak`修饰的变量还能访问该内存地址，并没有置为nil。
 
 用途：常用来定义delegate的属性来避免循环引用。
-为什么IBOut是weak：因为在你拖拽一个控件的时候，该控件的父视图已经强引用了它，所以你还需要设置为weak即可。
+为什么IBOut是weak：因为在你拖拽一个控件的时候，该控件的父视图已经强引用了它，如果你设置为strong，父视图销毁的时候，它并不会销毁，这样不仅没有意义而且消耗内存。所以需要设置为weak即可。
 
 * assign
 该词修饰C的基本数据类型，如：Int、Double等
