@@ -14,19 +14,28 @@
 * readonly
 只读：该词修饰的property只拥有get方法
 
-* nonatomic
-非原子性：
-
 * atomic(该值为默认值)
 原子性：
+1）能保证在
+2）速度慢，因为它要保证操作整体完成
+3）并不能真正的保证线程安全
+eg:如果线程A调了getter方法，与此同时拥有不同值线程B、线程C都调了setter方法，那最后线程A get到的值，3种都有可能：可能是B C set 之前原始的值，也可能是 B set的值，也可能是C set的值。同样，最终这个属性的值，可能是B set的值，也有可能是C set的值。
+* nonatomic
+非原子性：
+1）速度比aotomic块
+2）一般使用该词声明property
+3）线程不安全，如果两个线程同时访问一个property会出现无法预料的结果
 
 * strong(该值为默认值)
 强引用：
 
 * weak
 
+用途：常用来定义delegate的属性来避免循环引用。
+为什么IBOut是weak：
+
 * assign
-该词修饰基本类型，如：Int、Double等
+该词修饰C的基本数据类型，如：Int、Double等
 Why：assign其实也可以用来修饰对象，那么为什么不用它呢？因为被assign修饰的对象在释放之后，指针的地址还是存在的，也就是说指针并没有被置为nil。如果在后续内存分配中，刚才分到了这块地址，程序就会崩溃掉。而weak修饰的对象在释放之后，指针地址会被置为nil。
 
 * copy
@@ -114,3 +123,6 @@ Why：assign其实也可以用来修饰对象，那么为什么不用它呢？�
 * [《招聘一个靠谱的iOS》面试题参考答案/《招聘一个靠谱的iOS》面试题参考答案（上）.md#11-synthesize和dynamic分别有什么作用](https://github.com/ChenYilong/iOSInterviewQuestions/blob/master/01《招聘一个靠谱的iOS》面试题参考答案/《招聘一个靠谱的iOS》面试题参考答案（上）.md#11-synthesize和dynamic分别有什么作用)
 * [What does @dynamic do in Objective-C? [duplicate]](http://stackoverflow.com/questions/4621952/what-does-dynamic-do-in-objective-c)
 * [ios 经典面试题总结 -- 内存管理](http://gold.xitu.io/entry/56d94aa21ea493005dc11e8f)
+* [[爆栈热门iOS问题]atomic和nonatomic有什么区别？](http://www.jianshu.com/p/7288eacbb1a2)
+* [What's the difference between the atomic and nonatomic attributes?](http://stackoverflow.com/questions/588866/whats-the-difference-between-the-atomic-and-nonatomic-attributes/589392#589392)
+* [Differences between strong and weak in Objective-C](http://stackoverflow.com/questions/11013587/differences-between-strong-and-weak-in-objective-c)
