@@ -28,10 +28,20 @@ eg:如果线程A调了getter方法，与此同时拥有不同值线程B、线程
 
 * strong(该值为默认值)
 强引用：strong修饰的变量强引用本身。
-循环引用示例代码:
+循环引用（reference circle）示例代码:
 
 ```
+- (void)setupVC{
+    //strongVC 被strong修饰
+    ViewController *vc1 = [[ViewController alloc]init];
+    ViewController *vc2 = [[ViewController alloc]init];
+    vc1.strongVC = vc2;
+    vc2.strongVC = vc1;
+    NSLog(@"vc1-%p,vc2-%p",vc1.strongVC,vc2.strongVC);
+}
 ```
+
+vc1的strongVC属性引用了vc2，vc2的strongVC属性又引用了vc1。导致vc1e和vc2都不能释放，造成了循环引用。
 
 * weak
 弱引用：如果weak修饰的变量指向的对象超出它的作用域，并且没有strong修饰的变量指向该对象的话，weak指向的内存地址会自动置为nil。
