@@ -24,4 +24,4 @@
 * UICollectionView
 
 ## Advanced
-* [Animation](https://github.com/fengzhihao123/LearniOS/tree/master/Advanced)
+* [Animation](https://github.com/fengzhihao123/LearniOS/blob/master/Advanced/Animation.md)
