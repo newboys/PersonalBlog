@@ -20,4 +20,5 @@
 * contentMode(view)
 * contentsGravity(layer):内容在图层边界中怎么对齐
 * contentsScale
+* contentsRect
 
