@@ -35,10 +35,10 @@
 
 |  name          |      function |
 | -------------  |:-------------:|
-| shadowOpacity  | right-aligned | 
-| shadowColor    | centered      |
-| shadowOffset   | are neat      | 
-|shadowRadius    |               |
+| shadowOpacity  | opacity | 
+| shadowColor    | color      |
+| shadowOffset   | offset      | 
+|shadowRadius    |  radius       |
 
 5、视觉效果
 
