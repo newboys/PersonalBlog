@@ -31,9 +31,13 @@
 
 * CALayer并不关心任何响应链事件，所以不能直接处理触摸事件或者手势。但是它有一系列的方法帮你处理事件：`-containsPoint:`和`-hitTest:`
 * `borderWidth/borderColor`
-
----shadow --- shadow---shadow
-
+* shadow
+|  name          |      function |
+| ------------- |:-------------:|
+| shadowOpacity  | right-aligned | 
+| shadowColor    | centered      |
+| shadowOffset   | are neat      | 
+|shadowRadius    |               |
 
 5、视觉效果
 
