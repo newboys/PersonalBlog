@@ -46,6 +46,18 @@
 
 * mask
 
+|  name          |      function |
+| -------------  |:-------------:|
+| kCAFilterLinear | opacity | 
+| kCAFilterNearest    | color      |
+| kCAFilterTrilinear   | offset      | 
+
+* 使用`shouldRasterize`和`rasterizationScale`来防止含有子视图的视图透明化的问题(我在iOS10上是没有该问题)
+
+```
+ button2.layer.shouldRasterize = YES;
+ button2.layer.rasterizationScale = [UIScreen mainScreen].scale;
+```
 
 Tips:
 
