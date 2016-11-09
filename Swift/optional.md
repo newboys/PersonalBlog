@@ -6,7 +6,7 @@
 
 1、什么是Optional？
 
-如果在Object-C中创建的对象的值为nil，你可以通过`obj != nil`来判断该对象是否为空，但是在Object-C中基本类型(eg:Int/Double)是不能用nil的。而在Swift中nil是可以当做任何类型的值的。所以Swift用optional属性来修饰可能出现nil的值的对象。也就是说optional表示的是该变量的值可能是nil。
+如果在Object-C中创建的对象的值为nil，你可以通过`obj != nil`来判断该对象是否为空，但是在Object-C中基本类型(eg:Int/Double)是不能用nil的。而在Swift中optional机制可以修饰任意可能出现nil的类型(包括基本类型)。
 
 2、Optional的用法
 
@@ -65,8 +65,49 @@ enum Optional<T> {
 // 把 T 放在外面更好理解一点吧， 没有用 case Some<T> (value:T)
 所以 Bool？，除去语法糖，就是 Optional<Bool> 。它是一个 enum ，而不再是 Bool。而 nil 就是 Optional.Nil。unwrap 做的事情 （ a! ）就是提取 .Some 中的 value 变量。
 
+强制解析/解包 (forced unwrapping)
+
+当确定可选类型确实包含值之后,可以在可选的名字后面加一个感叹号(!)来获取值.当Option == nil时,使用 ! 来获取会导致运行时错误。所以使用 ! 来强制解析值之前,一定要确定Option类型不是nil的.
 
 3、Optional的进阶
+
+1)optaional chaining
+
+```
+class Toy{
+    let name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
+extension Toy{
+    func play()  {
+        print("extension")
+    }
+}
+
+class Pet{
+    var toy: Toy?
+}
+
+class Child{
+    var pet: Pet?
+}
+
+let xiaoming = Child()
+let petInstance = Pet()
+let toyInstance = Toy.init(name: "aaa")
+
+xiaoming.pet = petInstance
+xiaoming.pet?.toy = toyInstance
+
+if let tonyName = xiaoming.pet?.toy?.name {
+    print("yes")
+}else{
+    print("no")
+}
+```
 
 4、Optional的注意事项
 
