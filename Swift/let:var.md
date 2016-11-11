@@ -72,13 +72,13 @@ array[0] = 4
 var currentLoginAttempt = 0
 ```
 
-上面代码的含义:声明一个叫`currentLoginAttempt`的变量，并且给它赋值为0
+上面代码的含义:声明一个叫`currentLoginAttempt`的变量，并且给它赋初值为0
 
 #### 3、总结
 
 * 如果你代码中存储的值不会改变，你应该用let将它声明为常量
 * 仅在存储的值需要改变的时候使用var
-* apple强烈推荐使用let，在你的代码中如果声明的变量在其生命周期中值没有改变，编译器会建议将其换为常量。
+* 在你的代码中，如果声明的变量的值在其生命周期中没有改变，编译器会建议将其换为常量。
 
 #### 4、参考：
 * [How exactly does the “let” keyword work in Swift?](http://stackoverflow.com/questions/24002999/how-exactly-does-the-let-keyword-work-in-swift)
