@@ -16,7 +16,7 @@ Example:
 let maximumNumberOfLoginAttempts = 10
 ```
 
-上面代码的含义:声明了一个新的常量叫做`maximumNumberOfLoginAttempts`b，并且给它赋值为10。
+上面代码的含义:声明了一个新的常量叫做`maximumNumberOfLoginAttempts`，并且给它赋初值为10。
 
 2)理解let
 
@@ -31,6 +31,7 @@ class Student{
 }
 
 let stu = Student()
+//虽然stu是常量，但是我们可以修改它的属性。(前提：使用var声明属性，如果用let，stu的属性是不可改变的)
 stu.name = "joy"
 stu.age = 18
 ```
@@ -50,6 +51,7 @@ let student = Student()
 //虽然你在结构体内部用vard声明的age，但是你将student定义为常量，所以你不能改变age的值
 student.age = 5
 ```
+
 * 如果你用let声明一个数组/字典，你是不能改变它的内部元素的，如果你想改变集合的内部元素必须将其声明为var。
 
 Example:
@@ -64,7 +66,7 @@ array[0] = 4
 
 1)var代表什么
 
-在Swift中用var声明的是一个变量，它的值是可以随时更改的。`whereas a variable can be set to a different value in the future`
+在Swift中用var声明的是一个变量，它的值是可以随时更改的。(`whereas a variable can be set to a different value in the future`)
 
 ```
 var currentLoginAttempt = 0
