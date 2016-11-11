@@ -15,7 +15,7 @@ Example:
 ```
 let maximumNumberOfLoginAttempts = 10
 ```
-Declare a new constant called maximumNumberOfLoginAttempts, and give it a value of 10
+
 上面代码的含义:声明了一个新的常量叫做`maximumNumberOfLoginAttempts`b，并且给它赋值为10。
 
 2)理解let
