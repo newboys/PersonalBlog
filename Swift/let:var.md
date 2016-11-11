@@ -83,3 +83,4 @@ var currentLoginAttempt = 0
 #### 4、参考：
 * [How exactly does the “let” keyword work in Swift?](http://stackoverflow.com/questions/24002999/how-exactly-does-the-let-keyword-work-in-swift)
 * [apple](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309)
+* [Swift中的let和var背后的编程模式](http://www.infoq.com/cn/articles/programming-model-behind-let-and-var-in-swift)
