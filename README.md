@@ -27,4 +27,5 @@
 * [Animation](https://github.com/fengzhihao123/LearniOS/blob/master/Advanced/Animation.md)
 
 ## Swift
-* [optional]()
+* [optional](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/optional.md)
+* [let&var]()
