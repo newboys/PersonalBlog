@@ -42,11 +42,11 @@ optional类型的变量会发生两种情况:
 * 非可选(nonoptional)常量或者变量是不能赋值为nile的，如果你代码中的常量或者变量可能发生值缺失的情况，你应该将它声明为合适的可选(optional)类型
 * Swift中的nil和Object-C中的nil是不同的。在OC中，nil是一个指向一个不存在的对象的指针。而在swift中nil并不是一个指针，它是代表值缺失的一种类型。声明为optional的任何类型都能设置为nil，而不仅仅是对象类型(注:在OC中只能把对象类型设置为nil，结构体、枚举和C的基本类型是不能设置为nil的)。
 
-4、和if语句相结合的解包
+4、和if语句相结合的显式解包
 
 在swift中你可以通过if语句来判断是否有值，例如Example2。如果你确定optional是有值的，你可以通过`!`来解包访问这个值，如Example3。
 
-Example3
+Example3 :
 
 ```
 if convertedNumber != nil {
@@ -54,15 +54,33 @@ if convertedNumber != nil {
 }
 ```
 
-注:Trying to use ! to access a nonexistent optional value triggers a runtime error. Always make sure that an optional contains a non-nil value before using ! to force-unwrap its value.
+注:`如果使用'!'来访问一个没有值的可选类型，如Example4，编译器会报"unexpectedly found nil while unwrapping an Optional value"的错误。当你使用'!'解包时一定要确定optional类型的变量是有值的。`
 
+Example4 :
 
+```
+let possibleNumber = "dota"
+let convertedNumber = Int(possibleNumber)
+let num = convertedNumber!
+```
 
 5、Optional Binding
 
+你可以通过`optional binding`来检测optional是否包含值，如果有值的话，它会将值赋值给你定义的常量或者变量。
+
+语法格式如下:
+
+```
+if let `constantName` = `someOptional` {
+    statements
+}
+```
+
+
+
 6、隐式解包(Implicitly Unwrapped Optionals)
 
-
+7、总结
 
 
 
@@ -124,9 +142,8 @@ if let tonyName = xiaoming.pet?.toy?.name {
 }
 ```
 
-4、Optional的注意事项
 
-参考：
+8、参考：
 
 * [Swift 的 Optional 机制有什么用](https://www.zhihu.com/question/28026214)
 
