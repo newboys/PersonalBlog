@@ -10,9 +10,7 @@ optional机制:就是当你声明optional类型的变量值为空的时候，编
 
 我们来通过一个例子来理解这一句话，字符串类型转整型。我们知道通过调用函数我们是可以把字符串中的数字转换为整型，但是不是所有的字符串都能转换为整型，比如:`Dota`,那我们应该怎么解决这一问题呢？这就用到了optional机制。例如下面Example1的代码。我们通过编译器发现`convertedNumber`并不是`Int`类型，而是`Int?(等同于optional Int)`类型。我们可以通过判断convertedNumber中的值来知道转换是否成功(如果声明的类型不是optional类型，那么它一定不会为nil)。通过optional机制我们就可以避免程序发生因类型转换而导致的一些计算错误。
 
-注:在C和Object-C中并没有optional这种机制，和它比较相似的是
-
-The concept of optionals doesn’t exist in C or Objective-C. The nearest thing in Objective-C is the ability to return nil from a method that would otherwise return an object, with nil meaning “the absence of a valid object.” However, this only works for objects—it doesn’t work for structures, basic C types, or enumeration values. For these types, Objective-C methods typically return a special value (such as NSNotFound) to indicate the absence of a value. This approach assumes that the method’s caller knows there is a special value to test against and remembers to check for it. Swift’s optionals let you indicate the absence of a value for any type at all, without the need for special constants.
+注:`在C和Object-C中并没有optional这种机制，和它比较相似的是，当你调用一个返回值为对象的方法时，该方法返回nil(这意味着该对象为空)。然而这个只对对象有效，对于结构体、C的基本类型和枚举是不起作用的。对于这些类型Object-C只能返回一些具体的值(eg:NSNotFound)来表示值缺失。在swift中你可以通过optional来表示值缺失的情况，而不需要给定一个常量。`
 
 Example1 :
 ```
@@ -44,54 +42,30 @@ optional类型的变量会发生两种情况:
 * 非可选(nonoptional)常量或者变量是不能赋值为nile的，如果你代码中的常量或者变量可能发生值缺失的情况，你应该将它声明为合适的可选(optional)类型
 * Swift中的nil和Object-C中的nil是不同的。在OC中，nil是一个指向一个不存在的对象的指针。而在swift中nil并不是一个指针，它是代表值缺失的一种类型。声明为optional的任何类型都能设置为nil，而不仅仅是对象类型(注:在OC中只能把对象类型设置为nil，结构体、枚举和C的基本类型是不能设置为nil的)。
 
+4、和if语句相结合的解包
 
+在swift中你可以通过if语句来判断是否有值，例如Example2。如果你确定optional是有值的，你可以通过`!`来解包访问这个值，如Example3。
 
-
-
-
-2、Optional的用法
-
-代码示例：
-```
-//str 为可能为nil的字符串
-let str: String?
-//num 为可能为nil的整型
-let num: Int? 
-```
-
-使用optional可以使我们摆脱很多不必要的判断和取值。在OC中如果我们传参的值为nil在编译的阶段是不会报错的，这样会导致不必要的crash，如果我们引入optional机制就不会出现这种问题。
-
-1)OC 代码示例：
+Example3
 
 ```
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSArray *array;
-    //此时array为nil，但是编译器不会报错
-    [self setup:array];
-}
-
-- (void)setup:(NSArray *)array{
-    //do something
+if convertedNumber != nil {
+    print("convertedNumber has an integer value of \(convertedNumber!).")
 }
 ```
 
-2)Swift代码示例：
+注:Trying to use ! to access a nonexistent optional value triggers a runtime error. Always make sure that an optional contains a non-nil value before using ! to force-unwrap its value.
 
-```
-override func viewDidLoad() {
-        super.viewDidLoad()
-        let array: NSArray
-        //如果注释此句，编译器会报错。因为array是不允许nil的
-        array = []
-        doSomething(array: array)
-    }
 
-    func doSomething(array: NSArray) -> Void {
-        print(array)
-    }
 
-```
+5、Optional Binding
+
+6、隐式解包(Implicitly Unwrapped Optionals)
+
+
+
+
+
 
 其实了解一下 optional 的实现机制，就可以更深刻地理解 A 与 A？是两种完全不同的类型。
 
