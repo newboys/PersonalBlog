@@ -2,11 +2,52 @@
 
 ## Swift
 
-### Optional
+### Optional机制
 
-1、什么是Optional？
+1、什么是Optional机制？
 
-如果在Object-C中创建的对象的值为nil，你可以通过`obj != nil`来判断该对象是否为空，但是在Object-C中基本类型(eg:Int/Double)是不能用nil的。而在Swift中optional机制可以修饰任意可能出现nil的类型(包括基本类型)。
+optional机制:就是当你声明optional类型的变量值为空的时候，编译器会自动返回nil。
+
+我们来通过一个例子来理解这一句话，字符串类型转整型。我们知道通过调用函数我们是可以把字符串中的数字转换为整型，但是不是所有的字符串都能转换为整型，比如:`Dota`,那我们应该怎么解决这一问题呢？这就用到了optional机制。例如下面Example1的代码。我们通过编译器发现`convertedNumber`并不是`Int`类型，而是`Int?(等同于optional Int)`类型。我们可以通过判断convertedNumber中的值来知道转换是否成功(如果声明的类型不是optional类型，那么它一定不会为nil)。通过optional机制我们就可以避免程序发生因类型转换而导致的一些计算错误。
+
+注:在C和Object-C中并没有optional这种机制，和它比较相似的是
+
+The concept of optionals doesn’t exist in C or Objective-C. The nearest thing in Objective-C is the ability to return nil from a method that would otherwise return an object, with nil meaning “the absence of a valid object.” However, this only works for objects—it doesn’t work for structures, basic C types, or enumeration values. For these types, Objective-C methods typically return a special value (such as NSNotFound) to indicate the absence of a value. This approach assumes that the method’s caller knows there is a special value to test against and remembers to check for it. Swift’s optionals let you indicate the absence of a value for any type at all, without the need for special constants.
+
+Example1 :
+```
+let possibleNumber = "123"
+let convertedNumber = Int(possibleNumber)
+```
+
+Example2 :
+
+```
+if convertedNumber != nil {
+    // success
+}else{
+    //fail
+}
+```
+
+2、在什么情况下使用
+
+当可能发生值缺失(value may be absent)的情况时，你应该使用optional机制。比如Example1的情况。
+
+optional类型的变量会发生两种情况:
+
+* 该变量有值，你可以通过解包(unwarp)的方式来访问该值
+* 该变量木有值
+
+3、关于optional返回的`nil`
+
+* 非可选(nonoptional)常量或者变量是不能赋值为nile的，如果你代码中的常量或者变量可能发生值缺失的情况，你应该将它声明为合适的可选(optional)类型
+* Swift中的nil和Object-C中的nil是不同的。在OC中，nil是一个指向一个不存在的对象的指针。而在swift中nil并不是一个指针，它是代表值缺失的一种类型。声明为optional的任何类型都能设置为nil，而不仅仅是对象类型(注:在OC中只能把对象类型设置为nil，结构体、枚举和C的基本类型是不能设置为nil的)。
+
+
+
+
+
 
 2、Optional的用法
 
