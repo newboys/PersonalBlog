@@ -70,11 +70,28 @@ let num = convertedNumber!
 
 语法格式如下:
 
-```
 if let `constantName` = `someOptional` {
-    statements
+
+    `statements`
+    
+}
+
+你可以通过optional binding的方式来访问Example4中的optional的值，如Example5。在optional binding中你可以使用常量或者变量，如果你想改变Example5中`actualNumber`中的值，你可以将它声明为变量。
+
+Example5 :
+
+```
+//如果你想改变actualNumber中的值你可以将其声明为变量,如下
+//if var actualNumber = Int(possibleNumber) 
+if let actualNumber = Int(possibleNumber) {
+    print("\"\(possibleNumber)\" has an integer value of \(actualNumber)")
+} else {
+    print("\"\(possibleNumber)\" could not be converted to an integer")
 }
 ```
+
+Constants and variables created with optional binding in an if statement are available only within the body of the if statement. In contrast, the constants and variables created with a guard statement are available in the lines of code that follow the guard statement, as described in Early Exit.
+
 
 
 
