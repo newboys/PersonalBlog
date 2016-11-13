@@ -119,7 +119,7 @@ enum Optional<T> {
 
 当确定可选类型确实包含值之后,可以在可选的名字后面加一个感叹号(!)来获取值.当Option == nil时,使用 ! 来获取会导致运行时错误。所以使用 ! 来强制解析值之前,一定要确定Option类型不是nil的.
 
-3、Optional的进阶
+
 
 1)optaional chaining
 
