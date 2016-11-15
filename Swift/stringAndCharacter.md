@@ -3,7 +3,9 @@
 ## Swift
 
 ### Strings and Characters
-1、You can’t append a String or Character to an existing Character variable, because a Character value must contain a single character only
+1、你不能对一个已存在的字符(Character)变量进行字符或者字符串的拼接(Example1)，因为字符变量只能包含一个字符。
+
+Example1 :
 
 ```
 var str = "hello"
@@ -12,12 +14,22 @@ var character: Character = "!"
 //你不能写character.append(str)
 str.append(character)
 ```
-2/The expressions you write inside parentheses within an interpolated string cannot contain an unescaped backslash (\), a carriage return, or a line feed. However, they can contain other string literals.
 
-3/string index 
-endIndex not valid
+2、在Example2中的输出语句中，不能包含'\'和换行符。
+
+Example2 :
+
+```
+let num = 123
+print("the number is \(num)")
+```
+
+3、字符串索引的相关操作
+
+Example3 :
 ```
 let greeting = "Guten Tag!"
+//greeting[greeting.endIndex]会越界
 greeting[greeting.startIndex]
 // G
 greeting[greeting.index(before: greeting.endIndex)]
@@ -28,10 +40,18 @@ let index = greeting.index(greeting.startIndex, offsetBy: 7)
 greeting[index]
 // a
 ```
-4/ You can use the startIndex and endIndex properties and the index(before:), index(after:), and index(_:offsetBy:) methods on any type that conforms to the Collection protocol. This includes String, as shown here, as well as collection types such as Array, Dictionary, and Set.
-You can use the the insert(_:at:), insert(contentsOf:at:), remove(at:), and removeSubrange(_:) methods on any type that conforms to the RangeReplaceableCollection protocol. This includes String, as shown here, as well as collection types such as Array, Dictionary, and Set.
 
-5/The hasPrefix(_:) and hasSuffix(_:) methods perform a character-by-character canonical equivalence comparison between the extended grapheme clusters in each string
+4、你可以对遵守`Collection protocol`的任何类型，使用`startIndex`、`endIndex`属性和`index(before:)`、`index(after:)`、`index(_:offsetBy:)`方法。
+这些类型包括String/Array/Dictionary/Set。你可以对遵守`RangeReplaceableCollection protocol`的任何类型，使用`insert(_:at:)`/`insert(contentsOf:at:)`/`remove(at:)`/`removeSubrange(_:) `方法。这些类型包括String/Array/Dictionary/Set。
 
+5、`hasPrefix(_:)`和`hasSuffix(_:)`方法会每个字符去匹配你提供的字符串(Example4)。
 
+Example4 :
+
+```
+let str = "abcdeeeeee"
+if str.hasPrefix("ab") {
+    print("yes")
+}
+```
 
