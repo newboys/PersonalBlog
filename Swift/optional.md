@@ -124,6 +124,7 @@ let implicitString: String = assumedString // no need for an exclamation mark
 
 8、总结
 
+* 在Swift中nil可以对任意的optional类型使用，而不仅仅是对象类型
 * 在optional声明的实例的值可能为nil时，我们永远都要先判断在取值
 * 隐式解包也要确定必须包含值
 
