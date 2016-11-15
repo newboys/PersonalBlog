@@ -83,6 +83,7 @@ Example5 :
 ```
 //如果你想改变actualNumber中的值你可以将其声明为变量,如下
 //if var actualNumber = Int(possibleNumber) 
+//在if语句中创建的常量或者变量只在这个if语句内可用。
 if let actualNumber = Int(possibleNumber) {
     print("\"\(possibleNumber)\" has an integer value of \(actualNumber)")
 } else {
@@ -90,77 +91,43 @@ if let actualNumber = Int(possibleNumber) {
 }
 ```
 
-Constants and variables created with optional binding in an if statement are available only within the body of the if statement. In contrast, the constants and variables created with a guard statement are available in the lines of code that follow the guard statement, as described in Early Exit.
-
-
-
-
 6、隐式解包(Implicitly Unwrapped Optionals)
 
-7、总结
+隐式解包的用法如Example6所示，
 
+注:
 
+* 如果你访问的隐式解包的变量的值为nil(Example7)，你的程序将会报错。该错误和你强行解包一个值为nil的optional是一样的。
+* 当你声明的optional的变量后面可能为nil的时候，不要使用隐式解包。如果在一个变量的声明周期内你需要检测它是否为nil，你应该使用普通的optional。
 
-
-其实了解一下 optional 的实现机制，就可以更深刻地理解 A 与 A？是两种完全不同的类型。
-
-optional 在 Swift 中可以这样实现：
-```
-enum Optional<T> {
-    case Nil
-    case Some( value:T )
-} 
-```
-
-// 把 T 放在外面更好理解一点吧， 没有用 case Some<T> (value:T)
-所以 Bool？，除去语法糖，就是 Optional<Bool> 。它是一个 enum ，而不再是 Bool。而 nil 就是 Optional.Nil。unwrap 做的事情 （ a! ）就是提取 .Some 中的 value 变量。
-
-强制解析/解包 (forced unwrapping)
-
-当确定可选类型确实包含值之后,可以在可选的名字后面加一个感叹号(!)来获取值.当Option == nil时,使用 ! 来获取会导致运行时错误。所以使用 ! 来强制解析值之前,一定要确定Option类型不是nil的.
-
-
-
-1)optaional chaining
+Example6 :
 
 ```
-class Toy{
-    let name: String
-    init(name: String) {
-        self.name = name
-    }
-}
-
-extension Toy{
-    func play()  {
-        print("extension")
-    }
-}
-
-class Pet{
-    var toy: Toy?
-}
-
-class Child{
-    var pet: Pet?
-}
-
-let xiaoming = Child()
-let petInstance = Pet()
-let toyInstance = Toy.init(name: "aaa")
-
-xiaoming.pet = petInstance
-xiaoming.pet?.toy = toyInstance
-
-if let tonyName = xiaoming.pet?.toy?.name {
-    print("yes")
-}else{
-    print("no")
-}
+//正常情况
+let possibleString: String? = "An optional string."
+let forcedString: String = possibleString! // requires an exclamation mark
+//隐式解包
+let assumedString: String! = "An implicitly unwrapped optional string."
+let implicitString: String = assumedString // no need for an exclamation mark
 ```
 
+Example7 :
 
-8、参考：
+```
+var assumedString: String! = nil
+let implicitString: String = assumedString // no need for an exclamation mark
+```
+
+7、optaional chaining
+
+关于optional chaining的一些问题，大家可以看一下[喵神写的](http://swifter.tips/optional-chaining/)。我在这里就不赘述了！
+
+8、总结
+
+* 在optional声明的实例的值可能为nil时，我们永远都要先判断在取值
+* 隐式解包也要确定必须包含值
+
+9、参考：
 
 * [Swift 的 Optional 机制有什么用](https://www.zhihu.com/question/28026214)
 
