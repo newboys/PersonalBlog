@@ -108,12 +108,12 @@ for (index, item) in shoppingList.enumerated(){
 
 1、关于Set的一些常用方法(Example9)
 
-* count
-* isEmpty
-* insert(_:)
-* remove(_:)
-* contains(_:) 
-* removeAll()
+* `count`
+* `isEmpty`
+* `insert(_:)`
+* `remove(_:)`
+* `contains(_:)`
+* `removeAll()`
 
 Example9 :
 
@@ -167,10 +167,10 @@ for item in favoriteGenres.sorted() {
 
 3、Set的一些高级方法
 
-* intersection(_:)：创建一个包含俩个集合中公共的元素的新集合。
-* symmetricDifference(_:) ：创建一个包含两个集合中不共有的的元素的新集合
-* union(_:) ：创建一个包含两个集合中所有元素的新集合
-* subtracting(_:) ：创建一个包含目标集合没有的元素的新集合
+* `intersection(_:)`创建一个包含俩个集合中公共的元素的新集合。
+* `symmetricDifference(_:)`创建一个包含两个集合中不共有的的元素的新集合
+* `union(_:)`创建一个包含两个集合中所有元素的新集合
+* `subtracting(_:)`创建一个包含目标集合没有的元素的新集合
 
 Example11 :
 
