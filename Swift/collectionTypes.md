@@ -277,3 +277,4 @@ let airportNames = [String](airports.values)
 
 * 访问数组的时候不要越界
 * Set和Dictionary是无序的，数组是有序的
+* [官方文档](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105)
