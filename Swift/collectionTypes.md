@@ -82,10 +82,10 @@ shoppingList[4] = 5
 
 7、数组中比较常用的几个方法
 
-* insert(_:at:):在某个位置插入元素
-* remove(at:):移除某个位置的元素
-* removeLast():移除最后一个元素
-* enumerated():该方法返回一个包含索引和对应位置的值的元祖(tuple)数组(Example8)。
+* `insert(_:at:):` 在某个位置插入元素
+* `remove(at:):` 移除某个位置的元素
+* `removeLast():`移除最后一个元素
+* `enumerated():`该方法返回一个包含索引和对应位置的值的元祖(tuple)数组(Example8)。
 
 Example8 :
 
