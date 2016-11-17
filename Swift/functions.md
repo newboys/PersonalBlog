@@ -2,36 +2,28 @@
 
 ## Swift
 
-### Strings and Characters
-1、You can’t append a String or Character to an existing Character variable, because a Character value must contain a single character only
+### Functions
 
-```
-var str = "hello"
-str += " world"
-var character: Character = "!"
-//你不能写character.append(str)
-str.append(character)
-```
-2/The expressions you write inside parentheses within an interpolated string cannot contain an unescaped backslash (\), a carriage return, or a line feed. However, they can contain other string literals.
+1/Strictly speaking, this version of the greet(person:) function does still return a value, even though no return value is defined. Functions without a defined return type return a special value of type Void. This is simply an empty tuple, which is written as ().
 
-3/string index 
-endIndex not valid
-```
-let greeting = "Guten Tag!"
-greeting[greeting.startIndex]
-// G
-greeting[greeting.index(before: greeting.endIndex)]
-// !
-greeting[greeting.index(after: greeting.startIndex)]
-// u
-let index = greeting.index(greeting.startIndex, offsetBy: 7)
-greeting[index]
-// a
-```
-4/ You can use the startIndex and endIndex properties and the index(before:), index(after:), and index(_:offsetBy:) methods on any type that conforms to the Collection protocol. This includes String, as shown here, as well as collection types such as Array, Dictionary, and Set.
-You can use the the insert(_:at:), insert(contentsOf:at:), remove(at:), and removeSubrange(_:) methods on any type that conforms to the RangeReplaceableCollection protocol. This includes String, as shown here, as well as collection types such as Array, Dictionary, and Set.
+2/Return values can be ignored, but a function that says it will return a value must always do so. A function with a defined return type cannot allow control to fall out of the bottom of the function without returning a value, and attempting to do so will result in a compile-time error.
 
-5/The hasPrefix(_:) and hasSuffix(_:) methods perform a character-by-character canonical equivalence comparison between the extended grapheme clusters in each string
+3/An optional tuple type such as (Int, Int)? is different from a tuple that contains optional types such as (Int?, Int?). With an optional tuple type, the entire tuple is optional, not just each individual value within the tuple.
+```
+func minMax(array: [Int]) -> (min: Int, max: Int)? {
+    if array.isEmpty { return nil }
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+```
 
 
 
