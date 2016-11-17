@@ -31,3 +31,4 @@
 * [let&var](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/let:var.md)
 * [Basic Operators](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/basicOperator.md)
 * [Strings and Characters](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/stringAndCharacter.md)
+* [Collection Types](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/collectionTypes.md)
