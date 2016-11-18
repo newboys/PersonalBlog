@@ -34,3 +34,4 @@
 * [Collection Types](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/collectionTypes.md)
 * [Control Flow](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/controlFlow.md)
 * [Functions](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/functions.md)
+* [Closures](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/closures.md)
