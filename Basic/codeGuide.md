@@ -64,7 +64,8 @@ NSTableViewColumnDidMoveNotification  | Okey|
 
 #### 前缀(Prefixes)
 
-前缀是程序设计非常重要的一种命名方式。不同的前缀在软件区域中有不同的作用。
+前缀是程序设计非常重要的一种命名方式。不同的前缀在软件区域中有不同的功能。
+
 Prefixes are an important part of names in programmatic interfaces. They differentiate functional areas of software. Usually this software comes packaged in a framework or (as is the case of Foundation and Application Kit) in closely related frameworks. Prefixes protect against collisions between symbols defined by third-party developers and those defined by Apple (as well as between symbols in Apple’s own frameworks).
 
 * A prefix has a prescribed format. It consists of two or three uppercase letters and does not use underscores or “sub prefixes.” Here are some examples:
