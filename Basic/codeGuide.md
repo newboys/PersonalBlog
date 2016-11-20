@@ -66,15 +66,33 @@ NSTableViewColumnDidMoveNotification  | Okey|
 
 前缀是程序设计非常重要的一种命名方式。不同的前缀在软件区域中有不同的功能。
 
-Prefixes are an important part of names in programmatic interfaces. They differentiate functional areas of software. Usually this software comes packaged in a framework or (as is the case of Foundation and Application Kit) in closely related frameworks. Prefixes protect against collisions between symbols defined by third-party developers and those defined by Apple (as well as between symbols in Apple’s own frameworks).
+* 每种前缀有各自规定的格式。它由两个或者三个大写字母组成，它不能使用下划线或者下标。下面是一些具体的例子:
 
-* A prefix has a prescribed format. It consists of two or three uppercase letters and does not use underscores or “sub prefixes.” Here are some examples:
 前缀 | Framework|
 ----|------|
 NS | Foundation| 
 NS | Application Kit|
 AB | Address Book|
 IB | Interface Builder|
+
+* 当你命名类、协议、函数、常量和定义结构体的时候应该使用前缀。当命名方法的时候不要使用前缀；方法是存在于定义它们的类的命名空间。在命名结构体的字段时也不要使用前缀。
+
+#### 书写约定(Typographic Conventions)
+
+当命名API元素的时候你要准守一些很简单的约定:
+
+* For names composed of multiple words, do not use punctuation marks as parts of names or as separators (underscores, dashes, and so on); instead, capitalize the first letter of each word and run the words together (for example, runTheWordsTogether)—this is known as camel-casing. However, note the following qualifications:
+1)For method names, start with a lowercase letter and capitalize the first letter of embedded words. Don’t use prefixes.
+```
+fileExistsAtPath:isDirectory:
+```
+An exception to this guideline is method names that start with a well-known acronym, for example, TIFFRepresentation (NSImage).
+2)For names of functions and constants, use the same prefix as for related classes and capitalize the first letter of embedded words.
+
+```
+NSRunAlertPanel
+NSCellDisabled
+```
 
 
 
