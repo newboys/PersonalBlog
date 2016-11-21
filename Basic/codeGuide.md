@@ -39,8 +39,8 @@ displayName  | 它是显示一个名字还是返回用户界面的接受者的t
 2、一致性(Consistency)
 
 * 尽量使用和Cocoa 编程风格保持一致。如果你不确定如何命名，你可以浏览本文或者查看API文档。
-* 
-Consistency is especially important when you have a class whose methods should take advantage of polymorphism. Methods that do the same thing in different classes should have the same name.
+* 当你有一个方法应该利用多态性的类时，一致性尤为重要。做相同事情的方法在不同的类中应该有相同的名字。
+
 示例代码 | 评价|
 ----|------|
 `- (NSInteger)tag` | 在 NSView, NSCell, NSControl中被定义| 
