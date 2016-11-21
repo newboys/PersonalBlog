@@ -81,18 +81,23 @@ IB | Interface Builder|
 
 当命名API元素的时候你要准守一些很简单的约定:
 
-* For names composed of multiple words, do not use punctuation marks as parts of names or as separators (underscores, dashes, and so on); instead, capitalize the first letter of each word and run the words together (for example, runTheWordsTogether)—this is known as camel-casing. However, note the following qualifications:
-1)For method names, start with a lowercase letter and capitalize the first letter of embedded words. Don’t use prefixes.
+* 名字由多个单词组成，不要使用标点符号或者空格(或者下划线等等)当做名字的一部分；另外，每个单词的首字母要大写然后将这些单词拼在一起即可(第一个单词的首字母要小写)。eg:`runTheWordsTogether`。下面还有几条要求:
+
+1)对于方法的名字，第一个字母小写，以后每个单词的首字母大写。不要使用前缀。
+
+eg:
 ```
 fileExistsAtPath:isDirectory:
 ```
-An exception to this guideline is method names that start with a well-known acronym, for example, TIFFRepresentation (NSImage).
-2)For names of functions and constants, use the same prefix as for related classes and capitalize the first letter of embedded words.
+在该规范中对于方法的名字有一个例外，那就是以总所周知的单词缩写开头的，eg:TIFFRepresentation (NSImage)。
+
+2)对于功能和常量的名字，使用与相关类相同的前缀，并大写嵌入字的第一个字母
 
 ```
 NSRunAlertPanel
 NSCellDisabled
 ```
 
+* Avoid the use of the underscore character as a prefix meaning private in method names (using an underscore character as a prefix for an instance variable name is allowed). Apple reserves the use of this convention. Use by third parties could result in name-space collisions; they might unwittingly override an existing private method with one of their own, with disastrous consequences. See Private Methods for suggestions on conventions to follow for private API.
 
 
