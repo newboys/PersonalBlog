@@ -98,7 +98,45 @@ NSRunAlertPanel
 NSCellDisabled
 ```
 
-*  
-Avoid the use of the underscore character as a prefix meaning private in method names (using an underscore character as a prefix for an instance variable name is allowed). Apple reserves the use of this convention. Use by third parties could result in name-space collisions; they might unwittingly override an existing private method with one of their own, with disastrous consequences. See Private Methods for suggestions on conventions to follow for private API.
+* 不要将下划线当做x私有方法的前缀(使用下划线当做实例变量的前缀是可以的)。Apple 存储使用该约定。第三方使用可能导致名称空间冲突；他们可能会不小心重写一个已经存在的私有方法，这将会带来灾难性的后果。
 
+#### 类和协议的名字(Class and Protocol Names)
 
+类的名字应该能清晰的表达这个类的作用。类的名字应该有一个前缀(详情可见前缀)。这个在Foundation和frameworks中有很对例子；例如:NSString, NSDate, NSScanner, NSApplication, UIApplication, NSButton, 和 UIButton等。
+
+协议应该根据他们的组行为来命名:
+
+* 大多数协议组相关的方法和任何类是没有什么特定的关系的。协议的名称不应该和类的名字造成混淆。一个常见的做法就是使用'...ing'，例如:
+
+Code | Commentary|
+----|------|
+NSLocking | Good| 
+NSLock | 有歧义，看起来和类的名字差不多|
+
+* 有些协议有由一部分不想关的方法组成(而不是创建几个单独的小协议)。这些协议倾向于与作为协议的主表达式的类相关联。在这种情况下，应该将协议命名为和类一样的名字。
+
+#### 头文件(Header Files)
+
+如何声明头文件是非常重要的，因为这将说明该文件的包含什么内容。
+
+* 声明一个单独的类和协议。如果类和协议不是组的一部分，那就将类或者协议单独声明在各自的文件中。
+Header file | Declares|
+----|------|
+NSLocale.h | The NSLocale class| 
+
+* 声明相关的类和协议。对于一个组中相关的声明(类，类别，协议)，将声明放在主要的类，类别或协议名称的文件中
+
+Header file | Declares|
+----|------|
+NSString.h | NSString 和 NSMutableString 类| 
+NSLock.h   | NSLocking 协议 and NSLock, NSConditionLock, 和 NSRecursiveLock 类|
+
+* 导入框架头文件。每个框架都应该有一个以框架命名的头文件，包含该框架的所有公共头文件。
+
+Header file | Framework|
+----|------|
+Foundation.h | Foundation.framework| 
+
+* 给其他的framework中的类添加API。如果你在一个框架中声明的方法，在另一个框架的类的Category中，将'Additions'拼接在原始的类名称后面；例如Application Kit中的NSBundleAdditions.h。
+
+* 相关的功能和数据类型。如果你有组中相关的功能、常量、结构体和其他的数据类型，你应该给他们一个合适的头文件名称，例如NSGraphics.h(Application Kit)。
