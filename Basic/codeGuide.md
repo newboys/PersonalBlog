@@ -98,6 +98,7 @@ NSRunAlertPanel
 NSCellDisabled
 ```
 
-* Avoid the use of the underscore character as a prefix meaning private in method names (using an underscore character as a prefix for an instance variable name is allowed). Apple reserves the use of this convention. Use by third parties could result in name-space collisions; they might unwittingly override an existing private method with one of their own, with disastrous consequences. See Private Methods for suggestions on conventions to follow for private API.
+*  
+Avoid the use of the underscore character as a prefix meaning private in method names (using an underscore character as a prefix for an instance variable name is allowed). Apple reserves the use of this convention. Use by third parties could result in name-space collisions; they might unwittingly override an existing private method with one of their own, with disastrous consequences. See Private Methods for suggestions on conventions to follow for private API.
 
 
