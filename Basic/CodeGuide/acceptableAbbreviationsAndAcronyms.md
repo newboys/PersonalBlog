@@ -32,3 +32,22 @@
 |temp|Temporary|
 |vert|Vertical|
 
+你也可以使用下面这些在计算机行业公认的专业术语:
+
+ASCII
+PDF
+XML
+HTML
+URL
+RTF
+HTTP
+TIFF
+JPG
+PNG
+GIF
+LZW
+ROM
+RGB
+CMYK
+MIDI
+FTP
