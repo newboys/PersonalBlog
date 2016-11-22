@@ -242,11 +242,11 @@
 
 #### 私有方法(Privates Methods)
 
-In most cases, private method names generally follow the same rules as public method names. However, a common convention is to give private methods a prefix so it is easy to distinguish them from public methods. Even with this convention, the names given to private methods can cause a peculiar type of problem. When you design a subclass of a Cocoa framework class, you cannot know if your private methods unintentionally override private framework methods that are identically named.
+在大多数情况下，私有方法的命名通常遵守的规则和公共方法一样。然而，有一种给私有方法添加一个前缀的通常做法，用来比较容易的区分它和公共方法。即使有这个惯例，当给私有方法命名的时候也可能造成一些罕见的问题。当你设计一个属于Cocoa框架的类的子类的时候，你无法知道你的私有方法是否无意中覆盖了同名的私有框架方法。
 
-Names of most private methods in the Cocoa frameworks have an underscore prefix (for example, _fooData ) to mark them as private. From this fact follow two recommendations.
+大多数Cocoa框架的私有方法的名字都由一个下划线当前缀(eg:_fooData)，这样可以标识其为私有方法。请遵循下面推荐的俩条规则。
 
-* Don’t use the underscore character as a prefix for your private methods. Apple reserves this convention.
-* If you are subclassing a large Cocoa framework class (such as NSView or UIView) and you want to be absolutely sure that your private methods have names different from those in the superclass, you can add your own prefix to your private methods. The prefix should be as unique as possible, perhaps one based on your company or project and of the form "XX_". So if your project is called Byte Flogger, the prefix might be BF_addObject:
+* 不要使用下划线当做你的私有方法的前缀，Apple官方保留这一做法。
+* 如果你是Cocoa框架中一个非常大的类(eg:UIView)的子类，并且你想确认你定义的私有方法是否在该子类是否重名，你可以在你的私有方法添加自己特有的前缀。这个前缀尽可能是唯一的，可以是基于你的公司或者项目。如你的项目叫Byte Flogger，则为可以这样命名:BF_addObject:.
 
-Although the advice to give private method names a prefix might seem to contradict the earlier claim that methods exist in the namespace of their class, the intent here is different: to prevent unintentional overriding of superclass private methods.
+虽然给私人方法名称一个前缀的建议，可能与之前规定的规则有矛盾，但这里的意图是不同的：这里是为了防止无意重写夫类的私有方法。
