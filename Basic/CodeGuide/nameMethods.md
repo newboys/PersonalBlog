@@ -29,16 +29,19 @@
 |- (NSSize)getCellSize;|Wrong|
 
 * 在所有参数前使用关键字。
+
 |- (void)sendAction:(SEL)aSelector toObject:(id)anObject forAllCells:(BOOL)flag;|Right|
 |----|----|
 |- (void)sendAction:(SEL)aSelector :(id)anObject :(BOOL)flag;|wrong|
 
 * 在参数前要描述该参数。
+
 |- (id)viewWithTag:(NSInteger)aTag;|Right|
 |----|----|
 |- (id)taggedView:(int)aTag;|Wrong|
 
 * 当你创建的方法比继承的方法更加具体时，你应该在现有的方法尾部添加一个新的关键字。Add new keywords to the end of an existing method when you create a method that is more specific than the inherited one.
+
 |- (id)initWithFrame:(CGRect)frameRect;|NSView, UIView.|
 |----|----|
 |- (id)initWithFrame:(NSRect)frameRect mode:(int)aMode cellClass:(Class)factoryId numberOfRows:(int)rowsHigh numberOfColumns:(int)colsWide;|NSMatrix, a subclass of NSView|
