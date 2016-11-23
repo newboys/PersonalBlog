@@ -5,6 +5,7 @@
 <font color="#DC143C">前言:因为该文档为2013年，很久没有更新，所以有的地方已经过时。过时的地方我回标注出来!</font>
 
 <font color="#4590a3" size = "6px">文字</font>
+<font color=red>内容</font>
 
 ### 给属性和数据类型命名(Naming Properties and Data Types)
 
