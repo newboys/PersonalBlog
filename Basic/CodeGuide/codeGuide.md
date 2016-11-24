@@ -9,6 +9,8 @@
 * [可接受的简写和首字母缩写(Acceptable Abbreviations and Acronyms)](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/CodeGuide/acceptableAbbreviationsAndAcronyms.md)
 * [框架开发人员的技巧和贴士(Tips and Techniques for Framework Developers)](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/CodeGuide/tips.md)
 
+ [原文](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html#//apple_ref/doc/uid/10000146-SW1)
+
 ## 记录
 
 * 2016-11-24 首译完成
