@@ -2,7 +2,7 @@
 
 ## 编码规范
 
-### 对框架开发人员的一些建议(Tips and Techniques for Framework Developers)
+### 开发人员的技巧和贴士(Tips and Techniques for Framework Developers)
 
 注:由于本篇生僻单词较多，所以本篇的翻译是基于google翻译上修改的。
 
