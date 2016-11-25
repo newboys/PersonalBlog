@@ -14,10 +14,13 @@ func greet(person: String) {
 }
 ```
 
-2、h返回值可以被忽略。
-Return values can be ignored, but a function that says it will return a value must always do so. A function with a defined return type cannot allow control to fall out of the bottom of the function without returning a value, and attempting to do so will result in a compile-time error.
+2、返回值可以被忽略。
 
-3/An optional tuple type such as (Int, Int)? is different from a tuple that contains optional types such as (Int?, Int?). With an optional tuple type, the entire tuple is optional, not just each individual value within the tuple.
+返回值可以被忽略，但是一个声明了返回值的函数必须有返回值。如果你声明的函数有返回值，而你的函数体内并没有返回值的话，编译器会报错。
+
+3、`(Int, Int)?`和`(Int?, Int?)`是不同的。一个可选的元祖类型，并不是意味着它包含的每个值都是可选类型。
+
+Example2 :
 ```
 func minMax(array: [Int]) -> (min: Int, max: Int)? {
     if array.isEmpty { return nil }
@@ -33,28 +36,36 @@ func minMax(array: [Int]) -> (min: Int, max: Int)? {
     return (currentMin, currentMax)
 }
 ```
-4/If you don’t want an argument label for a parameter, write an underscore (_) instead of an explicit argument label for that parameter.
+
+4、如果你不想每个参数都写一个参数标签，你可以使用'_'来代替参数标签(eg:Example3)。
+
+Example3 :
+
 ```
-func someFunction(_ firstParameterName: Int, secondParameterName: Int) {
-    // In the function body, firstParameterName and secondParameterName
-    // refer to the argument values for the first and second parameters.
+func someFunction(_ firstParameterName : Int, secondParameterName: Int) {
+    // _代表第一个参数
 }
 someFunction(1, secondParameterName: 2)
 ```
-5/You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.
+
+5、通过在参数类型后面给参数添加一个值，你可以定义任何参数的默认值。如果参数被设置默认值，在调用该方法的时候你可以忽略该参数(Example4)。
+
+Example4 :
+
 ```
 func someFunction(parameterWithoutDefault: Int, parameterWithDefault: Int = 12) {
-    // If you omit the second argument when calling this function, then
-    // the value of parameterWithDefault is 12 inside the function body.
+
 }
-someFunction(parameterWithoutDefault: 3, parameterWithDefault: 6) // parameterWithDefault is 6
-someFunction(parameterWithoutDefault: 4) // parameterWithDefault is 12
+someFunction(parameterWithoutDefault: 3, parameterWithDefault: 6) // parameterWithDefault 为 6
+someFunction(parameterWithoutDefault: 4) // parameterWithDefault 为 12
 ```
 
-6/A variadic parameter accepts zero or more values of a specified type. You use a variadic parameter to specify that the parameter can be passed a varying number of input values when the function is called. Write variadic parameters by inserting three period characters (...) after the parameter’s type name.
+6、一个可变参数可以接受0个或者多个指定类型的参数。 你使用可变参数来指定在调用函数时，参数可以传递不同数量的输入值. 在参数类型后面添加三个点(...)来表明它为可变参数(Example5)。
 
-* A function may have at most one variadic parameter.
-* Function parameters are constants by default.
+* 一个函数最多有一个可变参数。
+* 函数参数默认为常量。
+
+Example5 :
 
 ```
 func arithmeticMean(_ numbers: Double...) -> Double {
@@ -65,31 +76,57 @@ func arithmeticMean(_ numbers: Double...) -> Double {
     return total / Double(numbers.count)
 }
 arithmeticMean(1, 2, 3, 4, 5)
-// returns 3.0, which is the arithmetic mean of these five numbers
+// return 3
 arithmeticMean(3, 8.25, 18.75)
-// returns 10.0, which is the arithmetic mean of these three numbers
+// returns 10.0
 ```
 
-7/In-out parameters cannot have default values, and variadic parameters cannot be marked as inout.You can only pass a variable as the argument for an in-out parameter.
+7、输入输出参数不能有默认值，并且可变参数不能标记为inout。你只能将变量声明为in-out参数。
 
-8/In-out parameters are not the same as returning a value from a function. The swapTwoInts example above does not define a return type or return a value, but it still modifies the values of someInt and anotherInt. In-out parameters are an alternative way for a function to have an effect outside of the scope of its function body.
+8、In-out参数和函数的返回值是不一样的。下面的例子并没有定义返回值，但是它仍然能修改someInt和anotherInt的值。In-out可以影响函数体外的参数值(Example6)。
 
-9、函数解读Using Function Types
+Example6 :
+```
+func swapTwoInts(_ a: inout Int, _ b: inout Int) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+
+var someInt = 3
+var anotherInt = 107
+swapTwoInts(&someInt, &anotherInt)
+print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
+//someInt = 107 anotherInt = 3
+```
+
+9、函数解读
+
+Example7 :
+
 ```
 func printHelloWorld() {
     print("hello, world")
 }
 ```
-The type of this function is () -> Void, or “a function that has no parameters, and returns Void.”
+
+上面函数的类型为`() -> Void`，或者是一个没有参数，返回值为Void的函数。
+
+Example8 :
+
 ```
 func addTwoInts(_ a: Int, _ b: Int) -> Int {
     return a + b
 }
 var mathFunction: (Int, Int) -> Int = addTwoInts
 ```
-“Define a variable called mathFunction, which has a type of ‘a function that takes two Int values, and returns an Int value.’ Set this new variable to refer to the function called addTwoInts.”
 
-10 Function Types as Parameter Types
+定义一个名字为mathFunction的变量，它的类型为:有两个Int类型的参数，并且返回值为Int的函数。该变量指向addTwoInts函数。
+
+10 函数当参数
+
+Example9 : 
+
 ```
 func printMathResult(_ mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
     print("Result: \(mathFunction(a, b))")
@@ -97,8 +134,12 @@ func printMathResult(_ mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
 printMathResult(addTwoInts, 3, 5)
 ```
 
-11/Nested Functions
-Nested functions are hidden from the outside world by default, but can still be called and used by their enclosing function. An enclosing function can also return one of its nested functions to allow the nested function to be used in another scope.
+11、内嵌函数
+
+嵌套函数默认情况下从外部隐藏，但仍然可以由其封闭函数调用和使用。封闭函数还可以返回其一个嵌套函数，以允许嵌套函数在另一个作用域中使用(Example9)。
+
+Example10 :
+
 ```
 func chooseStepFunction(backward: Bool) -> (Int) -> Int {
     func stepForward(input: Int) -> Int { return input + 1 }
@@ -107,7 +148,7 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
 }
 var currentValue = -4
 let moveNearerToZero = chooseStepFunction(backward: currentValue > 0)
-// moveNearerToZero now refers to the nested stepForward() function
+// moveNearerToZero 现在等同于stepForward函数，因为(currentValue > 0)为false
 while currentValue != 0 {
     print("\(currentValue)... ")
     currentValue = moveNearerToZero(currentValue)
