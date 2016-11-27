@@ -4,7 +4,7 @@
 
 ### Enumerations
 
-1、syntax
+1、语法
 
 ```
 enum CompassPoint {
