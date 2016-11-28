@@ -2,137 +2,147 @@
 
 ## Swift
 
-### Optional机制
+### Enumerations
 
-1、什么是Optional机制？
-
-optional机制:就是当你声明optional类型的变量值为空的时候，编译器会自动返回nil。
-
-我们来通过一个例子来理解这一句话，字符串类型转整型。我们知道通过调用函数我们是可以把字符串中的数字转换为整型，但是不是所有的字符串都能转换为整型，比如:`Dota`,那我们应该怎么解决这一问题呢？这就用到了optional机制。例如下面Example1的代码。我们通过编译器发现`convertedNumber`并不是`Int`类型，而是`Int?(等同于optional Int)`类型。我们可以通过判断convertedNumber中的值来知道转换是否成功(如果声明的类型不是optional类型，那么它一定不会为nil)。通过optional机制我们就可以避免程序发生因类型转换而导致的一些计算错误。
-
-注:`在C和Object-C中并没有optional这种机制，和它比较相似的是，当你调用一个返回值为对象的方法时，该方法返回nil(这意味着该对象为空)。然而这个只对对象有效，对于结构体、C的基本类型和枚举是不起作用的。对于这些类型Object-C只能返回一些具体的值(eg:NSNotFound)来表示值缺失。在swift中你可以通过optional来表示值缺失的情况，而不需要给定一个常量。`
-
-Example1 :
-```
-let possibleNumber = "123"
-let convertedNumber = Int(possibleNumber)
-```
-
-Example2 :
+1、基础语法
 
 ```
-if convertedNumber != nil {
-    // success
-}else{
-    //fail
+enum CompassPoint {
+    case north
+    case south
+    case east
+    case west
 }
 ```
 
-2、在什么情况下使用
+2、不像C或者Object-C，Swift中的枚举成员在它们被创建的时候，并不会被分配默认的整型值。它们本身就是一个完备的值，它们已经在CompassPoint中被定义好。如在上面的例子中，CompassPoint的north的值为north，而不是0。
 
-当可能发生值缺失(value may be absent)的情况时，你应该使用optional机制。比如Example1的情况。
-
-optional类型的变量会发生两种情况:
-
-* 该变量有值，你可以通过解包(unwarp)的方式来访问该值
-* 该变量木有值
-
-3、关于optional返回的`nil`
-
-* 非可选(nonoptional)常量或者变量是不能赋值为nile的，如果你代码中的常量或者变量可能发生值缺失的情况，你应该将它声明为合适的可选(optional)类型
-* Swift中的nil和Object-C中的nil是不同的。在OC中，nil是一个指向一个不存在的对象的指针。而在swift中nil并不是一个指针，它是代表值缺失的一种类型。声明为optional的任何类型都能设置为nil，而不仅仅是对象类型(注:在OC中只能把对象类型设置为nil，结构体、枚举和C的基本类型是不能设置为nil的)。
-
-4、和if语句相结合的显式解包
-
-在swift中你可以通过if语句来判断是否有值，例如Example2。如果你确定optional是有值的，你可以通过`!`来解包访问这个值，如Example3。
-
-Example3 :
+3、当你声明了一个枚举的成员变量时，你可以用更简洁的方式来修改成员变量的值。如下:
 
 ```
-if convertedNumber != nil {
-    print("convertedNumber has an integer value of \(convertedNumber!).")
+var directionToHead = CompassPoint.west
+//不用写CompassPoint.east
+directionToHead = .east
+```
+
+4、关联值(Associated Values) 
+
+在你定义一个枚举的时候，如果你需要的话，每个枚举成员的类型可以不同。
+
+```
+enum Barcode {
+    case upc(Int, Int, Int, Int)
+    case qrCode(String)
 }
 ```
 
-注:`如果使用'!'来访问一个没有值的可选类型，如Example4，编译器会报"unexpectedly found nil while unwrapping an Optional value"的错误。当你使用'!'解包时一定要确定optional类型的变量是有值的。`
-
-Example4 :
+应用:
 
 ```
-let possibleNumber = "dota"
-let convertedNumber = Int(possibleNumber)
-let num = convertedNumber!
-```
+var productBarcode = Barcode.upc(8, 85909, 51226, 3)
+productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
 
-5、Optional Binding
-
-你可以通过`optional binding`来检测optional是否包含值，如果有值的话，它会将值赋值给你定义的常量或者变量。
-
-语法格式如下:
-
-if let `constantName` = `someOptional` {
-
-    `statements`
-    
+switch productBarcode {
+case .upc(let numberSystem, let manufacturer, let product, let check):
+    print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
+case .qrCode(let productCode):
+    print("QR code: \(productCode).")
 }
+```
 
-你可以通过optional binding的方式来访问Example4中的optional的值，如Example5。在optional binding中你可以使用常量或者变量，如果你想改变Example5中`actualNumber`中的值，你可以将它声明为变量。
-
-Example5 :
+上文中的let你也可以这样使用。
 
 ```
-//如果你想改变actualNumber中的值你可以将其声明为变量,如下
-//if var actualNumber = Int(possibleNumber) 
-//在if语句中创建的常量或者变量只在这个if语句内可用。
-if let actualNumber = Int(possibleNumber) {
-    print("\"\(possibleNumber)\" has an integer value of \(actualNumber)")
+switch productBarcode {
+case let .upc(numberSystem, manufacturer, product, check):
+    print("UPC : \(numberSystem), \(manufacturer), \(product), \(check).")
+case let .qrCode(productCode):
+    print("QR code: \(productCode).")
+}
+// Prints "QR code: ABCDEFGHIJKLMNOP."
+```
+
+5、初始值(Raw values)
+
+初始值可以为字符串、字符或者任何数字类型如整型、单精度整型等。在枚举声明中每个成员的初始值必须唯一。
+
+```
+enum ASCIIControlCharacter: Character {
+    case tab = "\t"
+    case lineFeed = "\n"
+    case carriageReturn = "\r"
+}
+```
+
+6、如果第一个成员没有赋值的话，它的值将是0。
+
+```
+enum Planet: Int {
+    case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, neptune
+}
+```
+
+在上面的例子中，Planet.mercury的初始值为1，Planet.venus初始值为1，以此类推。
+
+当字符串被用作初始值的时候，每个成员的初始时默认为它们的名字。如CompassPoint.north的值为north。
+
+```
+enum CompassPoint: String {
+    case north, south, east, west
+}
+```
+
+7、不是所有的整型值都会匹配，所以，通过原始值初始化总是返回一个可选类型的枚举成员。例如下面的例子返回的是Planet?，或者'optional Planet'。
+
+```
+let possiblePlanet = Planet(rawValue: 7)
+// possiblePlanet is of type Planet? and equals Planet.uranus
+```
+
+可能为nil的情况
+
+```
+let positionToFind = 11
+if let somePlanet = Planet(rawValue: positionToFind) {
+    switch somePlanet {
+    case .earth:
+        print("Mostly harmless")
+    default:
+        print("Not a safe place for humans")
+    }
 } else {
-    print("\"\(possibleNumber)\" could not be converted to an integer")
+    print("There isn't a planet at position \(positionToFind)")
 }
+// Prints "There isn't a planet at position 11"
 ```
 
-6、隐式解包(Implicitly Unwrapped Optionals)
+8、递归枚举(Recursive Enumerations)
 
-隐式解包的用法如Example6所示，
-
-注:
-
-* 如果你访问的隐式解包的变量的值为nil(Example7)，你的程序将会报错。该错误和你强行解包一个值为nil的optional是一样的。
-* 当你声明的optional的变量后面可能为nil的时候，不要使用隐式解包。如果在一个变量的声明周期内你需要检测它是否为nil，你应该使用普通的optional。
-
-Example6 :
+递归枚举使用示例:
 
 ```
-//正常情况
-let possibleString: String? = "An optional string."
-let forcedString: String = possibleString! // requires an exclamation mark
-//隐式解包
-let assumedString: String! = "An implicitly unwrapped optional string."
-let implicitString: String = assumedString // no need for an exclamation mark
+indirect enum ArithmeticExpression {
+    case number(Int)
+    case addition(ArithmeticExpression, ArithmeticExpression)
+    case multiplication(ArithmeticExpression, ArithmeticExpression)
+}
+
+let five = ArithmeticExpression.number(5)
+let four = ArithmeticExpression.number(4)
+let sum = ArithmeticExpression.addition(five, four)
+let product = ArithmeticExpression.multiplication(sum, ArithmeticExpression.number(2))
+
+func evaluate(_ expression: ArithmeticExpression) -> Int {
+    switch expression {
+    case let .number(value):
+        return value
+    case let .addition(left, right):
+        return evaluate(left) + evaluate(right)
+    case let .multiplication(left, right):
+        return evaluate(left) * evaluate(right)
+    }
+}
+ 
+print(evaluate(product))
 ```
-
-Example7 :
-
-```
-var assumedString: String! = nil
-let implicitString: String = assumedString // no need for an exclamation mark
-```
-
-7、optaional chaining
-
-关于optional chaining的一些问题，大家可以看一下[喵神写的](http://swifter.tips/optional-chaining/)。我在这里就不赘述了！
-
-8、总结
-
-* 在Swift中nil可以对任意的optional类型使用，而不仅仅是对象类型
-* 在optional声明的实例的值可能为nil时，我们永远都要先判断在取值
-* 隐式解包也要确定必须包含值
-
-9、参考：
-
-* [Swift 的 Optional 机制有什么用](https://www.zhihu.com/question/28026214)
-
-* [[iOS笔记]Swift中的Optional类型 (可选类型)](http://www.jianshu.com/p/0e3712b0c044)
-
-* Swift Tips
-
+ 
