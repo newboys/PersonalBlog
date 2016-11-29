@@ -28,4 +28,4 @@
 * [Animation](https://github.com/fengzhihao123/LearniOS/blob/master/Advanced/Animation.md)
 
 ## Swift
-* [Swift官方文档总结](https://github.com/fengzhihao123/LearniOS/edit/master/Swift/SwiftDocumnetIntro.md)
+* [Swift官方文档总结](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/SwiftDocumnetIntro.md)
