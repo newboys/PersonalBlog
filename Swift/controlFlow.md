@@ -6,15 +6,15 @@
 
 #### While
 
-1
-* While
-* Repeat-While
-The repeat-while loop in Swift is analogous to a do-while loop in other languages.
+1、Repeat-While
 
-2/Conditional Statements
-Swift provides two ways to add conditional branches to your code: the if statement and the switch statement. Typically, you use the if statement to evaluate simple conditions with only a few possible outcomes. The switch statement is better suited to more complex conditions with multiple possible permutations and is useful in situations where pattern matching can help select an appropriate code branch to execute.
+Swift中的`repeat-while`类似于其它语言中的`do-while`。
 
-3 Switch
+2、条件语句(Conditional Statements)
+
+Swift提供两种方式可以在你的代码中添加条件语句:if语句和switch语句。通常情况下，当有很少的可能性的时候，你可以用if语句来判定结果。switch更适用于复杂的条件判断。
+
+3、Switch
 
 * In contrast with switch statements in C and Objective-C, switch statements in Swift do not fall through the bottom of each case and into the next one by default. Instead, the entire switch statement finishes its execution as soon as the first matching switch case is completed, without requiring an explicit break statement. This makes the switch statement safer and easier to use than the one in C and avoids executing more than one switch case by mistake.
 
@@ -88,8 +88,10 @@ print(description)
 * return
 * throw
 
-5 guard
+5、guard
+
 A guard statement, like an if statement, executes statements depending on the Boolean value of an expression. You use a guard statement to require that a condition must be true in order for the code after the guard statement to be executed. Unlike an if statement, a guard statement always has an else clause—the code inside the else clause is executed if the condition is not true.
+
 ```
 func greet(person: [String: String]) {
     guard let name = person["name"] else {
@@ -114,17 +116,22 @@ greet(person: ["name": "Jane", "location": "Cupertino"])
 // Prints "I hope the weather is nice in Cupertino."
 ```
 
-6 Checking API Availability
-You use an availability condition in an if or guard statement to conditionally execute a block of code, depending on whether the APIs you want to use are available at runtime. The compiler uses the information from the availability condition when it verifies that the APIs in that block of code are available.
+6、检查API是否可用
+
+你可以在if或者guard语句中判断你所使用的API在当前系统下是否可用。
+
+eg:
+
 ```
 if #available(iOS 10, macOS 10.12, *) {
-    // Use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS
+    //可以在iOS10和macOS10.12使用 
 } else {
-    // Fall back to earlier iOS and macOS APIs
+    // 可以在更早的系统上使用
 }
 ```
 
-syntax:
+语法:
+
 ```
 if #available(platform name version, ..., *) {
     statements to execute if the APIs are available
