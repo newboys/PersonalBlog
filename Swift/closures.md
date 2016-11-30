@@ -4,9 +4,7 @@
 
 ### Closures
 
-#### Closure Expression Syntax
-
-* syntax
+1、语法
 
 ```
 { (`parameters`) -> return `type` in
@@ -14,7 +12,7 @@
 }
 ```
 
-The parameters in closure expression syntax can be in-out parameters, but they can’t have a default value. Variadic parameters can be used if you name the variadic parameter. Tuples can also be used as parameter types and return types
+2、闭包表达式中的参数可以是输入输出参数，但是它们不能有默认值。如果你想声明一个可变的参数也是可以的。元祖既可以当参数也可以当返回值。
 
 * Inferring Type From Context
 

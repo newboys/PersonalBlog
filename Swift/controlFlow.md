@@ -16,13 +16,12 @@ Swift提供两种方式可以在你的代码中添加条件语句:if语句和swi
 
 3、Switch
 
-* In contrast with switch statements in C and Objective-C, switch statements in Swift do not fall through the bottom of each case and into the next one by default. Instead, the entire switch statement finishes its execution as soon as the first matching switch case is completed, without requiring an explicit break statement. This makes the switch statement safer and easier to use than the one in C and avoids executing more than one switch case by mistake.
+* 与C和Object-C中的switch不同，Swift中的switch执行完匹配的case语句后，不会执行后面的语句。这也就是说，不需要在 case 分支中显式地使用 break 语 句。这使得 switch 语句更安全、更易用，也避免了因忘记写 break 语句而产生的错误。
 
-* Although break is not required in Swift, you can use a break statement to match and ignore a particular case or to break out of a matched case before that case has completed its execution
+* 虽然break在Swift中不是强制要求的，你仍然可以使用break语句来匹配或者忽略摸个特定的case，或者在某个匹配case完成之前跳出该case。
 
-* The body of each case must contain at least one executable statement. It is not valid to write the following code, because the first case is empty
+* 每个case必须包含一个可执行的语句。如下面例子中第一个case是无效的，因为它没有可执行语句。
 
-* Unlike a switch statement in C, this switch statement does not match both "a" and "A". Rather, it reports a compile-time error that case "a": does not contain any executable statements. This approach avoids accidental fallthrough from one case to another and makes for safer code that is clearer in its intent.
 ```
 let anotherCharacter: Character = "a"
 switch anotherCharacter {
@@ -35,7 +34,7 @@ default:
 // This will report a compile-time error.
 ```
 
-* To make a switch with a single case that matches both "a" and "A", combine the two values into a compound case, separating the values with commas.
+* 通过下面的例子我们可以看出，Swift中的switch可以在一个case中同时包含"a"和"A", 通过逗号分隔。
 
 ```
 let anotherCharacter: Character = "a"
@@ -48,7 +47,7 @@ default:
 // Prints "The letter A"
 ```
 
-* You can use tuples to test multiple values in the same switch statement
+* 你可以使用元祖在一个switch语句中测试多个值，如下例:
 
 ```
 let somePoint = (1, 1)
@@ -66,11 +65,12 @@ default:
 }
 ```
 
-4 Control Transfer Statements
+4、控制语句中的关键字
 
-* continue:The continue statement tells a loop to stop what it is doing and start again at the beginning of the next iteration through the loop. It says “I am done with the current loop iteration” without leaving the loop altogether.
-* break:The break statement ends execution of an entire control flow statement immediately
-* fallthrough:Switch statements in Swift don’t fall through the bottom of each case and into the next one. If you need C-style fallthrough behavior, you can opt in to this behavior on a case-by-case basis with the fallthrough keyword. The example below uses fallthrough to create a textual description of a number.
+* continue:语句告诉一个循环体立刻停止本次循环，重新开始下次循环。就好像在说“本次循环我已经执行完 了”，但是并不会离开整个循环体。
+* break:break 语句会立刻结束整个控制流的执行。当你想要更早的结束一个 switch 代码块或者一个循环体时，你都可以 使用 break 语句。
+* fallthrough:Swift 中的 switch 不会从上一个 case 分支落入到下一个 case 分支中。如果你确实需要 C 风格的贯穿的特性，你可以在每个需要该特性的 case 分支中使用 fallthrough 关键字。下面 的例子使用 fallthrough 来创建一个数字的描述语句。
+
 ```
 let integerToDescribe = 5
 var description = "The number \(integerToDescribe) is"
@@ -88,9 +88,7 @@ print(description)
 * return
 * throw
 
-5、guard
-
-A guard statement, like an if statement, executes statements depending on the Boolean value of an expression. You use a guard statement to require that a condition must be true in order for the code after the guard statement to be executed. Unlike an if statement, a guard statement always has an else clause—the code inside the else clause is executed if the condition is not true.
+5、guard像if语句一样，guard的执行取决于一个表达式的布尔值。我们可以使用guard语句来要求条件必须为真时，以执行guard语句后的代码。不同于if语句，一个guard语句总是有一个else从句，如果条件不为真则执行 else从句中的代码。具体用法请看示例:
 
 ```
 func greet(person: [String: String]) {

@@ -2,147 +2,99 @@
 
 ## Swift
 
-### Enumerations
+### Classes and Structures
 
-1、基础语法
+1、类的实例通常被看做一个对象。然而，Swift中的类和结构体在功能上比其他语言更加相似，本章所讨论的大部分实例都可以应用在类和结构体类型。因此，我们会主要使用实例。
+
+2、当结构体类型在你的代码中传递的时候，它们总是会拷贝。它不会使用引用计数。
+
+3、Classes和Structure的声明语法:
 
 ```
-enum CompassPoint {
-    case north
-    case south
-    case east
-    case west
+class SomeClass {
+    
+}
+struct SomeStructure {
+
+}
+```
+4、当你定义一个新的类或者结构体的时候，你实际上就是在定义一种新的Swift类型。你应该使用`UpperCamelCase`(eg:SomeClass/SomeStructure)这种命名方式来符合Swift的命名标准(eg:String/Int/Bool)。相反的，你应该用`lowerCamelCase`来个属性或者方法来命名(eg:frameRate/incrementCount)，以便和类型名区分。
+
+```
+struct Resolution {
+    var width = 0
+    var height = 0
+}
+class VideoMode {
+    var resolution = Resolution()
+    var interlaced = false
+    var frameRate = 0.0
+    var name: String?
 }
 ```
 
-2、不像C或者Object-C，Swift中的枚举成员在它们被创建的时候，并不会被分配默认的整型值。它们本身就是一个完备的值，它们已经在CompassPoint中被定义好。如在上面的例子中，CompassPoint的north的值为north，而不是0。
-
-3、当你声明了一个枚举的成员变量时，你可以用更简洁的方式来修改成员变量的值。如下:
+5、不像Object-C，Swift可以直接设置结构体属性的紫属性的值。如下面的例子，someVideoMode的resolution的属性width的值可以直接设置，而不需要你在给resolution整个赋一个新值。
 
 ```
-var directionToHead = CompassPoint.west
-//不用写CompassPoint.east
-directionToHead = .east
-```
-
-4、关联值(Associated Values) 
-
-在你定义一个枚举的时候，如果你需要的话，每个枚举成员的类型可以不同。
-
-```
-enum Barcode {
-    case upc(Int, Int, Int, Int)
-    case qrCode(String)
-}
-```
-
-应用:
-
-```
-var productBarcode = Barcode.upc(8, 85909, 51226, 3)
-productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
-
-switch productBarcode {
-case .upc(let numberSystem, let manufacturer, let product, let check):
-    print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
-case .qrCode(let productCode):
-    print("QR code: \(productCode).")
-}
-```
-
-上文中的let你也可以这样使用。
-
-```
-switch productBarcode {
-case let .upc(numberSystem, manufacturer, product, check):
-    print("UPC : \(numberSystem), \(manufacturer), \(product), \(check).")
-case let .qrCode(productCode):
-    print("QR code: \(productCode).")
-}
-// Prints "QR code: ABCDEFGHIJKLMNOP."
-```
-
-5、初始值(Raw values)
-
-初始值可以为字符串、字符或者任何数字类型如整型、单精度整型等。在枚举声明中每个成员的初始值必须唯一。
-
-```
-enum ASCIIControlCharacter: Character {
-    case tab = "\t"
-    case lineFeed = "\n"
-    case carriageReturn = "\r"
-}
-```
-
-6、如果第一个成员没有赋值的话，它的值将是0。
-
-```
-enum Planet: Int {
-    case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, neptune
-}
-```
-
-在上面的例子中，Planet.mercury的初始值为1，Planet.venus初始值为1，以此类推。
-
-当字符串被用作初始值的时候，每个成员的初始时默认为它们的名字。如CompassPoint.north的值为north。
-
-```
-enum CompassPoint: String {
-    case north, south, east, west
-}
-```
-
-7、不是所有的整型值都会匹配，所以，通过原始值初始化总是返回一个可选类型的枚举成员。例如下面的例子返回的是Planet?，或者'optional Planet'。
-
-```
-let possiblePlanet = Planet(rawValue: 7)
-// possiblePlanet is of type Planet? and equals Planet.uranus
-```
-
-可能为nil的情况
-
-```
-let positionToFind = 11
-if let somePlanet = Planet(rawValue: positionToFind) {
-    switch somePlanet {
-    case .earth:
-        print("Mostly harmless")
-    default:
-        print("Not a safe place for humans")
-    }
-} else {
-    print("There isn't a planet at position \(positionToFind)")
-}
-// Prints "There isn't a planet at position 11"
-```
-
-8、递归枚举(Recursive Enumerations)
-
-递归枚举使用示例:
-
-```
-indirect enum ArithmeticExpression {
-    case number(Int)
-    case addition(ArithmeticExpression, ArithmeticExpression)
-    case multiplication(ArithmeticExpression, ArithmeticExpression)
+struct Resolution {
+    var width = 0
+    var height = 0
 }
 
-let five = ArithmeticExpression.number(5)
-let four = ArithmeticExpression.number(4)
-let sum = ArithmeticExpression.addition(five, four)
-let product = ArithmeticExpression.multiplication(sum, ArithmeticExpression.number(2))
-
-func evaluate(_ expression: ArithmeticExpression) -> Int {
-    switch expression {
-    case let .number(value):
-        return value
-    case let .addition(left, right):
-        return evaluate(left) + evaluate(right)
-    case let .multiplication(left, right):
-        return evaluate(left) * evaluate(right)
-    }
+class VideoMode {
+    var resolution = Resolution()
+    var interlaced = false
+    var frameRate = 0.0
+    var name: String?
 }
- 
-print(evaluate(product))
+
+let someVideo = VideoMode()
+
+someVideo.resolution.width = 200
 ```
- 
+
+6、结构体另一种初始化方式:
+
+```
+let vga = Resolution(width: 640, height: 480)
+```
+
+类的实例不能这样初始化。
+
+7、值类型(Value Types):结构体、枚举、其它基本数据类型等都是值类型。当它在赋值给常量/变量或者传递给函数的时候，会拷贝值。通过下面的例子我们可以发现，虽然cinema的width值变了，但hd的width值并没有变。那是因为Resolution是一个结构体，在进行`var cinema = hd`这一句的时候，系统会拷贝一份hd的值赋给cinema。它们两个是独立的两个结构体实例，所以改变cinema的值时，并不会影响hd。枚举同上。
+
+```
+let hd = Resolution(width: 1920, height: 1080)
+var cinema = hd
+cinema.width = 2000
+print(hd,cinema)
+//Resolution(width: 1920, height: 1080) Resolution(width: 2000, height: 1080)
+```
+
+8、引用类型(Reference Types):当它们在赋值或者传递给函数的时候不会拷贝值，因此，应用的是已存在的实例本身，并没有拷贝。通过下面的例子我们可以看出，修改了alsoTenEighty的frameRate的值，tenEighty的frameRate的值页跟着改变了。因为类是引用类型，tenEighty和alsoTenEighty其实引用的是同一个VideoMode实例。实际上，它们只是同一个实例的两个不同的名字。
+
+```
+let tenEighty = VideoMode()
+tenEighty.frameRate = 25.0
+
+let alsoTenEighty = tenEighty
+alsoTenEighty.frameRate = 30.0
+
+print(tenEighty.frameRate,alsoTenEighty.frameRate)
+//30.0 30.0
+```
+
+9、通过`===`和`!==`来判断两个实例是否为同一个类。
+
+```
+if tenEighty === alsoTenEighty {
+    print("yes")
+}
+//yes
+```
+
+`===`和`==`是不同的，`===`代表两个类类型的常量或者变量医用同一个类的实例，而`==`代表两个常量或者变量的值相等。
+
+10、在Swift中String、Array、Dictionary均已结构体的形式实现；Object-C中NSString、NSSArray、NSDictionary均已类的形式实现。
+
+11、在你的代码中，拷贝行为看起来似乎总会发生。然而，Swift在幕后只在绝对必要时才执行实际的拷贝。Swift管理所有的值拷贝以确保性能最优化，所以你没必要去回 避赋值来保证性能最优化。

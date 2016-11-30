@@ -74,7 +74,7 @@ enum ASCIIControlCharacter: Character {
 }
 ```
 
-6、如果第一个成员没有赋值的话，它的值将是0。
+6、在将Int作为初始值的时候，如果第一个成员没有赋值的话，它的值将是0。
 
 ```
 enum Planet: Int {
@@ -82,7 +82,7 @@ enum Planet: Int {
 }
 ```
 
-在上面的例子中，Planet.mercury的初始值为1，Planet.venus初始值为1，以此类推。
+在上面的例子中，因为已赋初值，所以Planet.mercury的初始值为1，Planet.venus初始值为2，以此类推。
 
 当字符串被用作初始值的时候，每个成员的初始时默认为它们的名字。如CompassPoint.north的值为north。
 
