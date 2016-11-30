@@ -23,3 +23,4 @@
 
 ## Swift
 * [Swift官方文档总结](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/SwiftDocumnetIntro.md)
+* [GCD](http://swift.gg/2016/11/30/grand-central-dispatch/)
