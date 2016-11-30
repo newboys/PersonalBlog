@@ -12,3 +12,4 @@
 * [Functions](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/functions.md)
 * [Closures](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/closures.md)
 * [Enumerations](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Enumerations.md)
+* [Properties]()
