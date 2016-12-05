@@ -26,12 +26,12 @@ range.firstValue = 3//这句代码报错
 
 lazy property:当该属性第一次被调用时，才会计算它的初始值。用`lazy`标识。
 
-useful
+作用:
 
 * 当一个属性的初始值是取决于一直到实例初始化完成才知道值的外部元素的时候(when the initial value for a property is dependent on outside factors whose values are not known until after an instance’s initialization is complete.)。
 * 当属性的初始值需要复杂或者大量的计算，可以在需要它的时候再初始化它(when the initial value for a property requires complex or computationally expensive setup that should not be performed unless or until it is needed)。
 
-注意事项
+注意事项:
 
 * 你必须用var关键字将lazy property声明为变量, 因为它的初始值可能在实例初始化完成才会得到。常量属性必须在初始化完成之前就有值，所以它不能用lazy声明。
 * 如果一个被标记为lazy的属性在初始化完成之前被多个线程同时访问，则不能保证该属性只被初始化一次。
@@ -153,7 +153,8 @@ class SomeClass {
 
 * 这是官方文档上类型属性的一个例子:
 
-代码解读:`thresholdLevel`表示的最大阈值，'maxInputLevelForAllChannels'表示最大的输入值。当你输入的`currentLevel`大于它时，它会将本身的值赋给`currentLevel`(如第一个if语句)。如果`currentLevel`值大于'maxInputLevelForAllChannels'，它会将本身的值赋给'maxInputLevelForAllChannels'(如第二个if语句)
+代码解读:`thresholdLevel`表示的最大阈值,`maxInputLevelForAllChannels`表示最大的输入值。当你输入的`currentLevel`大于它时，它会将本身的值赋给`currentLevel`(如第一个if语句)。如果`currentLevel`值大于`maxInputLevelForAllChannels`，它会将本身的值赋给`maxInputLevelForAllChannels`(如第二个if语句)
+
 ```
 struct AudioChannel {
     static let thresholdLevel = 10
