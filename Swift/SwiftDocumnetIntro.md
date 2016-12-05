@@ -13,5 +13,5 @@
 * [Closures](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/closures.md)
 * [Enumerations](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Enumerations.md)
 * [Properties](https://github.com/fengzhihao123/LearniOS/tree/master/Swift/Properties.md)
-* [Methods](https://github.com/fengzhihao123/LearniOS/tree/master/Swift/Mehtods.md)
-* [Subscripts](https://github.com/fengzhihao123/LearniOS/tree/master/Swift/Subscripts.md)
+* [Methods](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Methods.md)
+* [Subscripts](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Subscripts.md)
