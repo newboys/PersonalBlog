@@ -8,6 +8,8 @@
 
 2、当一个值类型(value type)的实例被声明为常量时，它的所有属性也会自动变为常量而不可更改。如果你声明一个引用类型(reference type)的实例，你仍然可以修改它的可变属性。
 
+Example:
+
 ```
 struct FixedLengthRange {
     var firstValue = 3
@@ -153,7 +155,9 @@ class SomeClass {
 
 * 这是官方文档上类型属性的一个例子:
 
-代码解读:`thresholdLevel`表示的最大阈值,`maxInputLevelForAllChannels`表示最大的输入值。当你输入的`currentLevel`大于它时，它会将本身的值赋给`currentLevel`(如第一个if语句)。如果`currentLevel`值大于`maxInputLevelForAllChannels`，它会将本身的值赋给`maxInputLevelForAllChannels`(如第二个if语句)
+代码解读:`thresholdLevel`表示的最大阈值,`maxInputLevelForAllChannels`表示最大的输入值。当你输入的`currentLevel`大于`thresholdLevel`时，`thresholdLevel`会将本身的值赋给`currentLevel`(如第一个if语句)。如果`currentLevel`值大于`maxInputLevelForAllChannels`，`currentLevel`会将本身的值赋给`maxInputLevelForAllChannels`(如第二个if语句)
+
+Example:
 
 ```
 struct AudioChannel {
