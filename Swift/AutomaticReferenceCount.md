@@ -2,111 +2,169 @@
 
 ## Swift
 
-### Methods
+### Automatic Reference Counting
 
-1、定义方法:Swift和Object-C最大的不同是，Swift中类、枚举、结构体都可以定义方法，而在Object-C中，只有类可以定义方法。
-2、实例方法(Instance Methods)
-实例方法指的是属于某个特定的类、结构体或者枚举的实例的方法(与Object-C中`-`开头的方法类似)，语法和函数一样。
-Example:
+#### 循环引用(strong reference cycles)
+
+1、代码示例:
 
 ```
-class Counter {
-    var count = 0
-    func increment() {
-        count += 1
-    }
-    func increment(by amount: Int) {
-        count += amount
-    }
-    func reset() {
-        count = 0
-    }
+class Person {
+    let name: String
+    init(name: String) { self.name = name }
+    var apartment: Apartment?
+    deinit { print("\(name) is being deinitialized") }
+}
+ 
+class Apartment {
+    let unit: String
+    init(unit: String) { self.unit = unit }
+    var tenant: Person?
+    deinit { print("Apartment \(unit) is being deinitialized") }
 }
 
-let counter = Counter()
-// the initial counter value is 0
-counter.increment()
-// the counter's value is now 1
-counter.increment(by: 5)
-// the counter's value is now 6
-counter.reset()
-// the counter's value is now 0
+var john: Person?
+var unit4A: Apartment?
+
+john = Person(name: "John Appleseed")
+unit4A = Apartment(unit: "4A")
+
+john!.apartment = unit4A
+unit4A!.tenant = john
+//虽然你置为nil，但是这两个类的实例并没有释放内存，没有执行print语句
+john = nil
+unit4A = nil
 ```
 
-3、一般情况下，在Swift中不需要显性的调用self，但是当名字重复时必须写self
+2、两种解决办法:
 
-Example: 
+* 当其他的实例有更短的生命周期的时候，使用weak
+* 当其他的实例有相同的或者更长的生命周期的时候，使用unowened
+
+3、weak和unowened的使用
+
+* weak的使用
+
+将上述代码的Apartment中的Person实例前添加weak关键字，在运行上述代码就会执行print
 
 ```
-struct Point {
-    var x = 0.0, y = 0.0
-    func isToTheRightOf(x: Double) -> Bool {
-        return self.x > x
+weak var tenant: Person?
+```
+
+* unowened的使用
+
+```
+class Customer {
+    let name: String
+    var card: CreditCard?
+    init(name: String) {
+        self.name = name
     }
+    deinit { print("\(name) is being deinitialized") }
 }
-let somePoint = Point(x: 4.0, y: 5.0)
-if somePoint.isToTheRightOf(x: 1.0) {
-    print("This point is to the right of the line where x == 1.0")
-}
-```
-
-4、结构体和枚举是值类型，默认情况下，值类型的属性是不能在它的实例方法中修改的，但是如果你想修改的话，你可以在方法前加上`mutating`关键字。
-
-Example:
-
-```
-struct Point {
-    var x = 0.0, y = 0.0
-    mutating func moveBy(x deltaX: Double, y deltaY: Double) {
-        x += deltaX
-        y += deltaY
+ 
+class CreditCard {
+    let number: UInt64
+    unowned let customer: Customer
+    init(number: UInt64, customer: Customer) {
+        self.number = number
+        self.customer = customer
     }
+    deinit { print("Card #\(number) is being deinitialized") }
 }
-var somePoint = Point(x: 1.0, y: 1.0)
-somePoint.moveBy(x: 2.0, y: 3.0)
-print("The point is now at (\(somePoint.x), \(somePoint.y))")
-```
-注意:你不能用结构体类型的常量来调用mutating方法，因为常量的属性是不变的(值类型的实例，一旦你声明为常量，则它的属性都默认为常量，即使该属性声明为变量)。
 
-Example:
-
+var john: Customer?
+john = Customer(name: "John Appleseed")
+john!.card = CreditCard(number: 1234_5678_9012_3456, customer: john!)
+john = nil
+// Prints "John Appleseed is being deinitialized"
+// Prints "Card #1234567890123456 is being deinitialized"
 ```
-let fixedPoint = Point(x: 3.0, y: 3.0)
-fixedPoint.moveBy(x: 2.0, y: 3.0)
-// this will report an error
+
+#### 闭包的循环引用(strong references for closures)
 
 ```
-5、在mutating方法给self分配值(Assigning to self Within a Mutating Method)
-
-Example:
-
-```
-struct Point {
-    var x = 0.0, y = 0.0
-    mutating func moveBy(x deltaX: Double, y deltaY: Double) {
-        self = Point(x: x + deltaX, y: y + deltaY)
+class HTMLElement {
+    
+    let name: String
+    let text: String?
+    
+    lazy var asHTML: () -> String = {
+        
+        if let text = self.text {
+            return "<\(self.name)>\(text)</\(self.name)>"
+        } else {
+            return "<\(self.name) />"
+        }
     }
-}
-
-var point = Point()
-point.moveBy(x: 3, y: 4)
-print(point)
-//Point(x: 3.0, y: 4.0)
-point.moveBy(x: 4, y: 5)
-print(point)
-//Point(x: 7.0, y: 9.0)
-```
-6、类型方法(Type Methods)
-
-与实例方法不同的是，类型方法只能由类型调用(类、结构体和枚举都可以创建类型方法，类型方法和Object-C中的类方法类似)。
-
-Example:
-
-```
-class SomeClass {
-    class func someTypeMethod() {
-        // type method implementation goes here
+    
+    init(name: String, text: String? = nil) {
+        self.name = name
+        self.text = text
     }
+    
+    deinit {
+        print("\(name) is being deinitialized")
+    }
+    
 }
-SomeClass.someTypeMethod()
+
+var paragraph: HTMLElement? = HTMLElement(name: "p", text: "hello, world")
+print(paragraph!.asHTML())
+paragraph = nil//不会执行print
 ```
+
+可以定义capture list来解决
+
+```
+//有参数
+lazy var someClosure: (Int, String) -> String = {
+    [unowned self, weak delegate = self.delegate!] (index: Int, stringToProcess: String) -> String in
+    // closure body goes here
+}
+//无参数
+lazy var someClosure: () -> String = {
+    [unowned self, weak delegate = self.delegate!] in
+    // closure body goes here
+}
+```
+
+修改上述例子后的代码:
+
+```
+class HTMLElement {
+    
+    let name: String
+    let text: String?
+    
+    lazy var asHTML: () -> String = {
+        [unowned self] in
+        if let text = self.text {
+            return "<\(self.name)>\(text)</\(self.name)>"
+        } else {
+            return "<\(self.name) />"
+        }
+    }
+    
+    init(name: String, text: String? = nil) {
+        self.name = name
+        self.text = text
+    }
+    
+    deinit {
+        print("\(name) is being deinitialized")
+    }
+    
+}
+
+var paragraph: HTMLElement? = HTMLElement(name: "p", text: "hello, world")
+print(paragraph!.asHTML())
+paragraph = nil//执行print
+```
+
+Tip:
+
+* ARC只是用于类，不适用于结构体和枚举
+* 当ARC设置的weak引用指为nil时，属性观察者不会被调用
+* 当你在确定引用的实例永远不会销毁的时候，使用unowened，如果你想访问被释放的owened属性，你会遇到运行时错误。
+* owened有安全和不安全两种模式，上面示例中为安全模式，你可以使用unowned(unsafe)来实现不安全模式。如果你试图访问被释放的不安全指向的实例，你的程序将会访问该实例曾经存储的内存地址，这是一个不安全的操作
