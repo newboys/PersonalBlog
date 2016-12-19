@@ -15,3 +15,5 @@
 * [Properties](https://github.com/fengzhihao123/LearniOS/tree/master/Swift/Properties.md)
 * [Methods](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Methods.md)
 * [Subscripts](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Subscripts.md)
+* [Inheritance](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Inheritance.md)
+* [Initialization](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Initialization.md)
