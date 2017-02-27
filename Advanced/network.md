@@ -5,47 +5,47 @@
 #### 创建GET请求
 
 ```
-    let userTel = "13231852031"
-    let userPassword = "123456"
-    let defaultConfiguration = URLSessionConfiguration.default
-    let sessionWithoutADelegate = URLSession(configuration: defaultConfiguration)
-    if let url = URL(string: "http://127.0.0.1:8080/v1/login?usertel=\(userTel)&userpassword=\(userPassword)") {
-        (sessionWithoutADelegate.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let response = response,
-                let data = data,
-                let string = String(data: data, encoding: .utf8) {
-                print("Response: \(response)")
-                print("DATA:\n\(string)\nEND DATA\n")
-            }
-        }).resume()
-    }
+let userTel = "13231852031"
+let userPassword = "123456"
+let defaultConfiguration = URLSessionConfiguration.default
+let sessionWithoutADelegate = URLSession(configuration: defaultConfiguration)
+if let url = URL(string: "http://127.0.0.1:8080/v1/login?usertel=\(userTel)&userpassword=\(userPassword)") {
+    (sessionWithoutADelegate.dataTask(with: url) { (data, response, error) in
+        if let error = error {
+            print("Error: \(error)")
+        } else if let response = response,
+            let data = data,
+            let string = String(data: data, encoding: .utf8) {
+            print("Response: \(response)")
+            print("DATA:\n\(string)\nEND DATA\n")
+        }
+    }).resume()
+}
 ```
 
 #### 创建POST请求
 
 ```
-    let defaultConfiguration = URLSessionConfiguration.default
-    let sessionWithoutADelegate = URLSession(configuration: defaultConfiguration)
-    let paramer: [String: String] = ["userTel":"13231852031","userPassword":"123456"]
+let defaultConfiguration = URLSessionConfiguration.default
+let sessionWithoutADelegate = URLSession(configuration: defaultConfiguration)
+let paramer: [String: String] = ["userTel":"13231852031","userPassword":"123456"]
+
+if let url = URL(string: "http://127.0.0.1:8080/v1/register") {
+    var request = URLRequest.init(url: url)
+    request.httpMethod = "POST"
+    request.httpBody = try? JSONSerialization.data(withJSONObject: paramer, options: JSONSerialization.WritingOptions.prettyPrinted)
     
-    if let url = URL(string: "http://127.0.0.1:8080/v1/register") {
-        var request = URLRequest.init(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: paramer, options: JSONSerialization.WritingOptions.prettyPrinted)
-        
-        sessionWithoutADelegate.dataTask(with: request, completionHandler: { (data, response, error) in
-            if let error = error {
-                print("Error:\(error)")
-            }else if let response = response,
-                let data = data,
-                let string = String(data: data,encoding: .utf8){
-                print("Response: \(response)\n")
-                print("DATA:\(string)\n")
-            }
-        }).resume()
-    }
+    sessionWithoutADelegate.dataTask(with: request, completionHandler: { (data, response, error) in
+        if let error = error {
+            print("Error:\(error)")
+        }else if let response = response,
+            let data = data,
+            let string = String(data: data,encoding: .utf8){
+            print("Response: \(response)\n")
+            print("DATA:\(string)\n")
+        }
+    }).resume()
+}
 ```
 
 ### 根据Alamofire的README读其源码
@@ -86,37 +86,118 @@ public func request(
 首先该方法通过`URLConvertible`协议来判断URL的有效性(如未无效URL会抛出Error)，然后方法默认为GET，parameters参数默认为空，参数编码默认为URLEncoding.default，header默认为空。在该方法中又调用了`SessionManager`，接下来我们再跳转到SessionManager，在SessionManager中的request方法实现如下(由于方法较长下面代码只贴关键部分):
 
 ```
+do {
+    originalRequest = try URLRequest(url: url, method: method, headers: headers)
+    let encodedURLRequest = try encoding.encode(originalRequest!, with: parameters)
+    return request(encodedURLRequest)
+} catch {
+    return request(originalRequest, failedWith: error)
+}
 
-    do {
-        originalRequest = try URLRequest(url: url, method: method, headers: headers)
-        let encodedURLRequest = try encoding.encode(originalRequest!, with: parameters)
-        return request(encodedURLRequest)
-    } catch {
-        return request(originalRequest, failedWith: error)
+```
+
+在上述实现中我们可以看到，如果各项参数都没问题的话，它会进入`do`代码块中request方法.
+do中的request方法实现如下:
+
+```
+do {
+    originalRequest = try urlRequest.asURLRequest()
+    let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)
+    let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
+    let request = DataRequest(session: session, requestTask: .data(originalTask, task))
+    delegate[task] = request
+    if startRequestsImmediately { request.resume() }
+    return request
+} catch {
+    return request(originalRequest, failedWith: error)
+}
+```
+
+还是在判断各项参数都正确后调用resume方法，在该方法中它会调用URLSessionTask的`resume()`来启动该次请求。由此我们可以看出虽然我们只是调用这么简单的一句话，但是里面还是由很多条件和逻辑的，只不过这一切Alamofire替我们做了。
+
+上述的代码逻辑如果把所有的错误检查和判断逻辑简化掉，类似于下方的代码:
+
+```
+let url = URL.init(string: "http://example.com")
+let session = URLSession.shared
+session.dataTask(with: url!).resume()
+```
+
+#### Response Handling
+
+Alamofire默认有五种response handler:
+* Response Handler - Unserialized Response(没有序列化response)
+* Response Data Handler - Serialized into Data(将数据序列化为Data)
+* Response String Handler - Serialized into String(将数据序列化为String)
+* Response JSON Handler - Serialized into Any(将数据序列化为Any)
+* Response PropertyList (plist) Handler - Serialized into Any(同上)
+
+Tip:上述五种response handler都没对返回数据的HTTPURLResponse做验证，Alamofire是通过[Response Validation](https://github.com/Alamofire/Alamofire#response-validation)做验证的。
+
+##### Response Handler
+
+```
+Alamofire.request("https://httpbin.org/get").response { response in
+}
+```
+
+ResponseSerialization.swift中的方法实现:
+
+```
+ delegate.queue.addOperation {
+    (queue ?? DispatchQueue.main).async {
+        var dataResponse = DefaultDataResponse(
+            request: self.request,
+            response: self.response,
+            data: self.delegate.data,
+            error: self.delegate.error,
+            timeline: self.timeline
+        )
+
+        dataResponse.add(self.delegate.metrics)
+
+        completionHandler(dataResponse)
     }
-
 ```
 
-在上述实现中
+`DefaultDataResponse`为结构体，包含request、response、data等数据。
+
+Alamofire不建议使用这种response serializers。
+
+##### Response Data Handler
 ```
-    do {
-        originalRequest = try urlRequest.asURLRequest()
-        let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)
-        let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
-        let request = DataRequest(session: session, requestTask: .data(originalTask, task))
-        delegate[task] = request
-        if startRequestsImmediately { request.resume() }
-        return request
-    } catch {
-        return request(originalRequest, failedWith: error)
-    }
+Alamofire.request("https://httpbin.org/get").responseData { response in
+}
 ```
 
+如果请求数据和解析数据的过程中没有发生错误，它将返回一个Data类型的数据，Response的Result将会是.success。在该方法的实现源码中调用了`responseSerializer: DataRequest.dataResponseSerializer()`序列化数据的方法
 
+##### Response String Handler
 
+```
+Alamofire.request("https://httpbin.org/get").responseString { response in
+}
+```
 
+该Handler通过`responseStringSerializer`将返回的Data数据转为String类型，如果没有错误发生，并且服务器数据成功转为String，response的Result将为.success并且值为String。
 
+##### Response JSON Handle
 
+```
+Alamofire.request("https://httpbin.org/get").responseJSON { response in
+}
+```
+
+该handler通过调用`jsonResponseSerializer`方法来转换数据类型，若没发生错误request同上
+
+##### Chained Response Handlers
+
+Tip:使用链式response包含几个handler，就会请求几次数据数据
+
+##### Response Handler Queue
+Response handlers默认在主线程队列中执行，但是我们可以提供一个自定义线程队列
+
+#### Response Validation
 
 
 
