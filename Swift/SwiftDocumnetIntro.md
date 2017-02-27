@@ -2,6 +2,8 @@
 
 ## Swift
 
+`本系列所有文章基于Swift3.0.1`
+
 ### Swift Document Introduction
 * [Optional](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/optional.md)
 * [let&var](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/let:var.md)
@@ -18,3 +20,4 @@
 * [Inheritance](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Inheritance.md)
 * [Initialization](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/Initialization.md)
 * [Automatic Reference Counting](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/AutomaticReferenceCount.md)
+* [Optional Chaining](https://github.com/fengzhihao123/LearniOS/blob/master/Swift/OptionalChinaing.md)
