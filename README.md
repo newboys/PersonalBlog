@@ -7,7 +7,7 @@
 * [iOS shortcut(快捷键)](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/iOSshortcut.md)
 * [iOS 编码规范(OC)](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/CodeGuide/codeGuide.md)
 * [Category/Extension](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/Category:Extension.md)
-* Sigleton
+* [Sigleton](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/Singleton.md)
 * [内存管理](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/内存管理.md)
 * [block](https://github.com/fengzhihao123/LearniOS/blob/master/Basic/block.md)
 * Protocol
