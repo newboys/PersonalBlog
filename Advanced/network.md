@@ -1,6 +1,7 @@
 ## Network
 
 ### URLSession/NSURLSession
+URLSession相当于管理一个请求的类，它涉及到URL/URLRequest/URLSessionConfiguration/URLSessionTask。通过这几个类的综合使用，我们就可以很方便的创建请求
 
 #### 创建GET请求
 
@@ -198,7 +199,30 @@ Tip:使用链式response包含几个handler，就会请求几次数据数据
 Response handlers默认在主线程队列中执行，但是我们可以提供一个自定义线程队列
 
 #### Response Validation
+默认情况下，Alamofire认为任何已完成的请求都是成功的，无论相应内容是什么。你可以在handler之前调用`validate`来判断status code
 
+#### HTTP Methods
+Alamofire支持HTTP的GET、POST、DELETE等方法，并将这些方法声明为`HTTPMethod`的enum
+
+#### Parameter Encoding
+Alamofire提供三种参数编码方式URL,JSON和PropertyList
+
+#### Session Manager
+SessionManager.swift是Alamofire中比较重要的一个文件，它是URLSession的管理类，文件中是对request方法的具体实现。正是有该类才使得Alamofire发起一个请求非常简单。
+通过源码我们可以看见如果不设置URLSessionConfiguration，默认为URLSessionConfiguration.default
+你也可以将URLSessionConfiguration修改为Background Configuration和Ephemeral Configuration
+
+#### Request
+Requests可以被暂停(suspended)复位(resumed)和取消(cancelled)
+
+#### Routing Requests
+随着APP的不断更新和迭代，构建网络层的通用模式很重要。如何路由你的request也是非常重要的一个部分。`URLConvertible`和`URLRequestConvertible`协议可以帮助你构建路由的通用部分
+
+##### URLConvertible
+String, URL, 和URLComponents是默认遵守`URLConvertible`协议的，所以你可以在request中写String, URL, 和URLComponents，它会自动检测request中的参数，根据参数类型找到相应的方法转为URL。你也可以根据文档中的例子来构造自己的路由
+
+##### URLRequestConvertible
+URLRequest默认遵守该协议，该协议用来构造URLRequest
 
 
 #### 代码中的关键字解释
@@ -207,7 +231,8 @@ Response handlers默认在主线程队列中执行，但是我们可以提供一
 * `static`:在方法的func关键字之前加上关键字static或者class都可以用于指定类方法.不同的是用class关键字指定的类方法可以被子类重写
 * `@escaping`
 
-
+#### 总结
+至此，Alamofire的源码已经了解完，我在这里只是简单的了解一下Alamofire是如何实现最基本的GET和POST请求如何实现。可以看到，它通过几层包装实现了参数的校验、request支持String、URL和URLComponents三种方式。由于水平有限，对于它下载上传等功能的源码并没有十分理解，所以在这并没有写，大家有能力的可以自行查看源码。在Alamofire中比较重要的几个文件Alamofire.swift/Response.swift/SessionManager.swift/Request.swift。
 
 ### 参考
 * [GET/Post Request](http://ios.jobbole.com/85378/)
