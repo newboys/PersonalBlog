@@ -8,3 +8,7 @@
 
 #### autojump
 
+### Cocoapods
+[Cocoapods install](http://www.jianshu.com/p/00107eb5449b)
+
+### VSCode
