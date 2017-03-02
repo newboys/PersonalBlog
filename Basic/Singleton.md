@@ -23,7 +23,7 @@ Tip:因为单例对象一旦创建，对象指针是保存在静态区的，单�
 * Swift
 
 ```
-class TheOneAndOnlyKraken {
+final class TheOneAndOnlyKraken {
     static let sharedInstance = TheOneAndOnlyKraken()
     private init() {}
 }
