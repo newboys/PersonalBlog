@@ -21,7 +21,7 @@
 
 #### 2、MAC通用快捷键
 * command + control + f:全屏当前窗口
-
+asfasfa
 
 参考：
 [官网](https://developer.apple.com/library/prerelease/content/documentation/IDEs/Conceptual/xcode_help-command_shortcuts/MenuCommands/MenuCommands014.html#//apple_ref/doc/uid/TP40010560-CH2-SW4)
