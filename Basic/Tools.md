@@ -2,7 +2,16 @@
 
 #### git
 * [git document](https://git-scm.com/book/zh/v2)
-* 
+
+ERROR:
+* `error:src refspec master does not match any`
+原因: 引起该错误的原因是，目录中没有文件，空目录是不能提交上去的
+
+* `error: failed to push some refs to 'https://github.com/fengzhihao123/test.git'`
+原因: github中的README.md文件不在本地代码目录中 pull=fetch+merge
+执行: `git pull --rebase origin master`
+
+
 #### Iterm
 * [shortcut key](https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/)
 
