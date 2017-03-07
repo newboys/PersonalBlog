@@ -10,6 +10,8 @@
 
 ### Cocoapods
 * [Cocoapods install](http://www.jianshu.com/p/00107eb5449b)
+* [pod install vs pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html)
+* [忽略特殊文件.gitignore](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013758404317281e54b6f5375640abbb11e67be4cd49e0000)
 
 #### Install error 
 * pod setup :error `RPC failed; curl 56 SSLRead() return error -36| 17.00 KiB/s`
