@@ -26,6 +26,7 @@
 * [automatic deployment](https://github.com/fastlane/fastlane)   
 * [Extensibility](https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214-CH20-SW1)
 * [NetWork](https://github.com/fengzhihao123/LearniOS/blob/master/Advanced/network.md)
+* [Scan](https://github.com/fengzhihao123/LearniOS/blob/master/Advanced/Scan.md)
 
 
 ## Swift
