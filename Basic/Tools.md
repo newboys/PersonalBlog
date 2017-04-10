@@ -11,6 +11,12 @@ ERROR:
 原因: github中的README.md文件不在本地代码目录中 pull=fetch+merge
 执行: `git pull --rebase origin master`
 
+* 显示本地分支和远程分支的对应关系
+`git branch -vv`
+
+* error:`refusing to merge unrelated histories`
+解决:`git pull --allow-unrelated-histories`  [so](http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories)
+
 
 #### Iterm
 * [shortcut key](https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/)

@@ -55,3 +55,14 @@ if str.hasPrefix("ab") {
 }
 ```
 
+6、剔除字符串中的空格
+```
+var str = "hh ss dd cc"
+var newStr = ""
+for chacter in str.characters {
+    var chac = String(chacter)
+    if chac != " " {
+        newStr.append(chac)
+    }
+}
+```
