@@ -39,3 +39,8 @@ There’s actually an even shorter way to write the closure expression above. Sw
 ```
 reversedNames = names.sorted(by: >)
 ```
+
+Tip:
+* 闭包的body是由 `in` 关键字来指定的。该关键字的位置就是闭包参数和返回值类型结束的位置。(The start of the closure’s body is introduced by the in keyword. This keyword indicates that the definition of the closure’s parameters and return type has finished)
+* 在闭包表达式的语法中，参数可以是可以改变的，但是它们不能有默认值(The parameters in closure expression syntax can be in-out parameters, but they can’t have a default value. )
+* 当你使用尾随闭包语法时，你不需要写闭包的参数标签(When you use the trailing closure syntax, you don’t write the argument label for the closure as part of the function call.)

@@ -25,7 +25,7 @@ print("the number is \(num)")
 ```
 
 3、字符串索引的相关操作
-
+`endIndex` 要小心使用
 Example3 :
 ```
 let greeting = "Guten Tag!"
@@ -65,4 +65,52 @@ for chacter in str.characters {
         newStr.append(chac)
     }
 }
+```
+
+### Practice
+```
+var str = "hello"
+//print str length
+str.characters.count
+//print helloworld
+str += "world"
+//print hello world
+str.insert(" ", at: str.index(str.startIndex, offsetBy: 5))
+//print hello world!
+str.insert("!", at: str.endIndex)
+//print r index
+//str[str.endIndex]
+//print hello
+let range = str.index(str.startIndex, offsetBy: 5)..<str.endIndex
+str.removeSubrange(range)
+
+
+func convertColor(color: String) -> (red: String, green: String,blue: String) {
+    var colorStr = color
+    var resultArr = [String]()
+    
+    if colorStr.hasPrefix("0X") {
+        colorStr = colorStr.substring(from: "0X".endIndex)
+    }
+    if colorStr.hasPrefix("#") {
+        colorStr = colorStr.substring(from: "#".endIndex)
+    }
+    //    red
+    let redIndex = colorStr.index(colorStr.startIndex, offsetBy: 2)
+    if let redStr = String(colorStr[colorStr.startIndex..<redIndex]) {
+        resultArr.append(redStr)
+    }
+    //    green
+    let greenIndex = colorStr.index("11".endIndex, offsetBy: 2)
+    if let greenStr = String(colorStr["11".endIndex...greenIndex]) {
+        resultArr.append(greenStr)
+    }
+    //    blue
+    let blueIndex = colorStr.index("1111".endIndex, offsetBy: 2)
+    if let blueStr = String(colorStr["1111".endIndex...blueIndex]) {
+        resultArr.append(blueStr)
+    }
+    return (resultArr[0], resultArr[1], resultArr[2])
+}
+
 ```

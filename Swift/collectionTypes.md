@@ -273,6 +273,16 @@ let airportNames = [String](airports.values)
 // airportNames is ["Toronto Pearson", "London Heathrow"]
 ```
 
+#### 面试题
+
+* Array:
+
+```
+var arr = [Int]()
+arr.append(2)
+print(arr)
+```
+
 #### 总结
 
 * 访问数组的时候不要越界
