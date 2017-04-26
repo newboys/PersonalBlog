@@ -45,6 +45,16 @@ func findNavigationBarBottomLine(view: UIView?) -> UIImageView? {
 }
 ```
 
+
+## UITableView
+
+### 设置section间距 [Link](http://blog.csdn.net/gx_wqm/article/details/51866356)
+
+```
+tableView.sectionHeaderHeight = 5
+tableView.sectionFooterHeight = 5
+```
+
 ### 重写cell frame
 
 ```
@@ -57,6 +67,3 @@ override var frame: CGRect {
     }
 ```
 
-### Swift
-* Alafire
-* Kingfisher
