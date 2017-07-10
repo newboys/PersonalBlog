@@ -1,6 +1,6 @@
 ## Network
 
-### URLSession/NSURLSession
+### URLSession/NSURLSession(iOS 7 及以后，NSURLConnection在以前使用)
 URLSession相当于管理一个请求的类，它涉及到URL/URLRequest/URLSessionConfiguration/URLSessionTask。通过这几个类的综合使用，我们就可以很方便的创建请求
 
 #### 创建GET请求
