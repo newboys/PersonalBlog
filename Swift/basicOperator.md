@@ -67,3 +67,23 @@ userSetColor = "green"
 var currentColor = userSetColor ?? defaultColor
 //currentColor 为green，如果userSetColor非空，则返回userSetColor的值，defaultColor则会无效。
 ```
+
+6、一元运算符 `+`,并没有实质性的操作
+
+```
+let minusSix = -6
+let alsoMinusSix = +minusSix  // alsoMinusSix equals -6
+```
+
+7、比较运算符也可以比较tuples,从左向右比较
+
+8、在写多个逻辑运算符的条件语句时，最好加上括号已使判断逻辑更加清晰
+
+```
+if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
+    print("Welcome!")
+} else {
+    print("ACCESS DENIED")
+}
+```
+
