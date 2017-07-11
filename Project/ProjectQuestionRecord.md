@@ -337,3 +337,4 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
 * button user sdwebimage [button user sdwebimage](https://stackoverflow.com/questions/36277472/set-image-from-sdwebimage-to-background-of-button)
 * [获取当前跟视图](http://www.jianshu.com/p/949fd3dd720b)
 * tableview滑动至顶部 `[tableView setContentOffset:CGPointMake(0, -64) animated:NO];`
+* 删除代码块 [sk](https://stackoverflow.com/questions/5923513/delete-a-user-code-snippet-in-xcode)
