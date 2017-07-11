@@ -338,3 +338,5 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
 * [获取当前跟视图](http://www.jianshu.com/p/949fd3dd720b)
 * tableview滑动至顶部 `[tableView setContentOffset:CGPointMake(0, -64) animated:NO];`
 * 删除代码块 [sk](https://stackoverflow.com/questions/5923513/delete-a-user-code-snippet-in-xcode)
+* 设置button位置 [Link](https://github.com/Phelthas/Demo_ButtonImageTitleEdgeInsets)
+* 设置UITextView [Link](https://cnbin.github.io/blog/2015/10/13/ios-zhong-uitextview-yu-dao-de-wen-ti-zong-jie/)
