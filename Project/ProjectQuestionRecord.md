@@ -340,3 +340,25 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
 * 删除代码块 [sk](https://stackoverflow.com/questions/5923513/delete-a-user-code-snippet-in-xcode)
 * 设置button位置 [Link](https://github.com/Phelthas/Demo_ButtonImageTitleEdgeInsets)
 * 设置UITextView [Link](https://cnbin.github.io/blog/2015/10/13/ios-zhong-uitextview-yu-dao-de-wen-ti-zong-jie/)
+* image 处理[Link](https://github.com/lisongrc/UIImage-Categories) [Link2](http://blog.wangruofeng007.com/blog/2016/01/13/you-ya-chu-li-uiimagetu-pian-xuan-zhuan/)
+* 设置cell左划删除
+
+```
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {//修改删除button title
+    return  @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle ==UITableViewCellEditingStyleDelete) {//如果编辑样式为删除样式
+        [self callDeleteActivityAPIWithActivityModel:_dataArray[indexPath.row]];
+    }
+}
+```
