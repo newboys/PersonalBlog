@@ -364,3 +364,8 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
 ```
 
 * Launch Image [Set](http://www.jianshu.com/p/2e6756c4c7be)   [size](http://www.jianshu.com/p/8242b501b223)
+* Launch Image 模拟器显示，真机不显示 
+
+```
+LaunchImage 在模拟器上显示但在真机上不显示,可能是给你图片的人直接把jpg文件改后缀为png然后给你了，但本质上它还是一张jpg图片，真机根据你给的png信息无法解析，解决办法是，再找美工要一张真的的png图片，要不就把图片后缀改为jpg，然后自己用ps改格式。
+```
