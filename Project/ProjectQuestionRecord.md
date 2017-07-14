@@ -362,3 +362,5 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
     }
 }
 ```
+
+* Launch Image [Set](http://www.jianshu.com/p/2e6756c4c7be)   [size](http://www.jianshu.com/p/8242b501b223)
