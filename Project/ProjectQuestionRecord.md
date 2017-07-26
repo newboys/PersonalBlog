@@ -364,6 +364,8 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
 ```
 
 * Launch Image [Set](http://www.jianshu.com/p/2e6756c4c7be)   [size](http://www.jianshu.com/p/8242b501b223)
+
+[Link](http://blog.csdn.net/riven_wn/article/details/49275157)
 * Launch Image 模拟器显示，真机不显示 
 
 ```
