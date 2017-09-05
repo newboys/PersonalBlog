@@ -371,3 +371,7 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
 ```
 LaunchImage 在模拟器上显示但在真机上不显示,可能是给你图片的人直接把jpg文件改后缀为png然后给你了，但本质上它还是一张jpg图片，真机根据你给的png信息无法解析，解决办法是，再找美工要一张真的的png图片，要不就把图片后缀改为jpg，然后自己用ps改格式。
 ```
+
+### UITextField
+
+* 输入文字太靠左边不美观 `textField.leftView = view; textField.leftViewMode = UITextFieldViewModeAlways`
