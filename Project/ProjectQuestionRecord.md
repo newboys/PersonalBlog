@@ -389,3 +389,9 @@ if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
     [cell setPreservesSuperviewLayoutMargins:NO];
 }
 ```
+
+* 去掉某一条cell的分割线
+
+```
+cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
+```
