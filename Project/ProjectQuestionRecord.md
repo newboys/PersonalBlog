@@ -395,3 +395,8 @@ if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
 ```
 cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 ```
+
+* 比较NSDate大小
+
+1、[link](http://www.jianshu.com/p/f79e804e9cbc)
+2、`timeIntervalSince1970 `
