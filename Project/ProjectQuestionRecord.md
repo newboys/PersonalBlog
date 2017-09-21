@@ -400,3 +400,8 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 
 1、[link](http://www.jianshu.com/p/f79e804e9cbc)
 2、`timeIntervalSince1970 `
+
+* edit问题
+`"_OBJC_CLASS_$_ISSetPayPasswordViewController", referenced from:`
+
+[Answer](http://blog.csdn.net/jimjarry/article/details/7748957)
