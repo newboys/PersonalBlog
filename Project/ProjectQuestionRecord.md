@@ -405,3 +405,16 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 `"_OBJC_CLASS_$_ISSetPayPasswordViewController", referenced from:`
 
 [Answer](http://blog.csdn.net/jimjarry/article/details/7748957)
+
+* button点击事件区域太小的问题
+
+```
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event {
+    CGRect bounds = self.bounds;
+    //若原热区小于44x44，则放大热区，否则保持原大小不变
+    CGFloat widthDelta = MAX(44.0 - bounds.size.width, 0);
+    CGFloat heightDelta = MAX(44.0 - bounds.size.height, 0);
+    bounds = CGRectInset(bounds, -0.5 * widthDelta, -0.5 * heightDelta);
+    return CGRectContainsPoint(bounds, point);
+}
+```
