@@ -418,3 +418,5 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
     return CGRectContainsPoint(bounds, point);
 }
 ```
+
+* UICollectionView 删除item崩溃 [Answer](https://stackoverflow.com/questions/5454708/nsinternalinconsistencyexception-invalid-number-of-rows)
