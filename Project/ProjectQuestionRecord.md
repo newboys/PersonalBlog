@@ -371,3 +371,52 @@ NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:1];
 ```
 LaunchImage 在模拟器上显示但在真机上不显示,可能是给你图片的人直接把jpg文件改后缀为png然后给你了，但本质上它还是一张jpg图片，真机根据你给的png信息无法解析，解决办法是，再找美工要一张真的的png图片，要不就把图片后缀改为jpg，然后自己用ps改格式。
 ```
+
+* 输入文字太靠左边不美观 `textField.leftView = view; textField.leftViewMode = UITextFieldViewModeAlways`
+
+* 设置tableview cell分割线到头
+
+```
+if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+}
+
+if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+}
+
+if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
+    [cell setPreservesSuperviewLayoutMargins:NO];
+}
+```
+
+* 去掉某一条cell的分割线
+
+```
+cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
+```
+
+* 比较NSDate大小
+
+1、[link](http://www.jianshu.com/p/f79e804e9cbc)
+2、`timeIntervalSince1970 `
+
+* edit问题
+`"_OBJC_CLASS_$_ISSetPayPasswordViewController", referenced from:`
+
+[Answer](http://blog.csdn.net/jimjarry/article/details/7748957)
+
+* button点击事件区域太小的问题
+
+```
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event {
+    CGRect bounds = self.bounds;
+    //若原热区小于44x44，则放大热区，否则保持原大小不变
+    CGFloat widthDelta = MAX(44.0 - bounds.size.width, 0);
+    CGFloat heightDelta = MAX(44.0 - bounds.size.height, 0);
+    bounds = CGRectInset(bounds, -0.5 * widthDelta, -0.5 * heightDelta);
+    return CGRectContainsPoint(bounds, point);
+}
+```
+
+* UICollectionView 删除item崩溃 [Answer](https://stackoverflow.com/questions/5454708/nsinternalinconsistencyexception-invalid-number-of-rows)
