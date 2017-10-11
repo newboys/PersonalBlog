@@ -420,3 +420,6 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 ```
 
 * UICollectionView 删除item崩溃 [Answer](https://stackoverflow.com/questions/5454708/nsinternalinconsistencyexception-invalid-number-of-rows)
+
+* error:`Collection  was mutated while being enumerated`
+原因：不能一遍循环数组一遍修改数组
