@@ -425,3 +425,4 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 原因：不能一遍循环数组一遍修改数组
 
 * 模态控制器的style `test.modalPresentationStyle = UIModalPresentationOverCurrentContext;`
+* UIImageView 根据中心店旋转
