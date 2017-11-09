@@ -428,3 +428,14 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 * UIImageView 根据中心店旋转
 
 * UIWebView 预览本地文件https://github.com/vfr/Reader
+
+取消webview粘贴复制
+
+```
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    // Disable user selection
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+    // Disable callout
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+}
+```
