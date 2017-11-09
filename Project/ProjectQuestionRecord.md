@@ -426,3 +426,5 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 
 * 模态控制器的style `test.modalPresentationStyle = UIModalPresentationOverCurrentContext;`
 * UIImageView 根据中心店旋转
+
+* UIWebView 预览本地文件https://github.com/vfr/Reader
