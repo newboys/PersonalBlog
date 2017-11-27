@@ -10,4 +10,9 @@ Q:如何解决collectionview 上一个button点击事件错乱问题？
 
 Q:如何设置全屏HUD？
 
+```
+[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+[UIApplication sharedApplication].keyWindow.userInteractionEnabled = NO;
+```
+
 Q:编写和微信一样的录视频？
