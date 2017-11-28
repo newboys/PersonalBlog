@@ -5,7 +5,10 @@
 
 ### Effective Objective-C 2.0
 1、尽量声明局部常量或者全局变量/常量来代替#define
+
 2、NSArray/NSDictory/NSString/NSNumber 赋值时尽量使用字面量语法(Literal Syntax)。
+
+3、在需要知道接口全部细节的时候才导入头文件，其它是
 
 ### 声明属性
 
