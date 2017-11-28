@@ -9,7 +9,7 @@
  `@property (nonatomic, strong) UIButton *cancelButton;` 
 `@property空格(nonatomic,空格strong)空格UIButton空格*cancelButton;`
 
-Tip：声明property一般都是写好一个然后放在Code Snippet中，(如果不知道这个东西可以参见这里)[http://www.jianshu.com/p/8f953c4cccd5]
+Tip：声明property一般都是写好一个然后放在Code Snippet中，(http://www.jianshu.com/p/8f953c4cccd5)[如果不知道这个东西可以参见这]
 
 
 #### 内存管理的相关关键字
