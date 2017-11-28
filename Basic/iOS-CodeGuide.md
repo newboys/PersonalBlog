@@ -3,13 +3,17 @@
 
 进入iOS这一行业也有些年头了，一路走来也经历了几个项目。为什么大多数程序员不愿意接受别人的代码，一来每个人的思维逻辑不一样，二来就是代码的规范性了。如果你接手的项目并没有按照相关的规范编写，那可真是欲哭无泪了。由此可见大家遵守统一的代码规范还是很有必要的。所以在闲暇之余写下这篇文章，希望对别人有所帮助。
 
+### Effective Objective-C 2.0
+1、尽量声明局部常量或者全局变量/常量来代替#define
+2、NSArray/NSDictory/NSString/NSNumber 赋值时尽量使用字面量语法(Literal Syntax)。
+
 ### 声明属性
 
 #### 格式
  `@property (nonatomic, strong) UIButton *cancelButton;` 
 `@property空格(nonatomic,空格strong)空格UIButton空格*cancelButton;`
 
-Tip：声明property一般都是写好一个然后放在Code Snippet中，(http://www.jianshu.com/p/8f953c4cccd5)[如果不知道这个东西可以参见这]
+Tip：声明property一般都是写好一个然后放在Code Snippet中，[如果不知道这个东西可以参见这](http://www.jianshu.com/p/8f953c4cccd5)
 
 
 #### 内存管理的相关关键字
