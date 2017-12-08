@@ -19,3 +19,5 @@ Q:如何设置全屏HUD？
 ```
 
 Q:编写和微信一样的录视频？
+
+Q:UIButton type system和custom的区别为什么定时器system会闪？
