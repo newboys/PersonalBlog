@@ -14,7 +14,7 @@
 + (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;
 ```
 
-* - (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;
+* `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;`
 
 该方法可以执行延时方法，该方法不会阻塞主线程，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。
 
@@ -30,7 +30,7 @@
 [self performSelector:@selector(yourselfDelayMethod:) withObject:@"object" afterDelay:2.0];
 ```
 
-* + (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;
+* `+ (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;`
 
 该方法是取消当前target的所有当前通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`所注册的方法。
 
