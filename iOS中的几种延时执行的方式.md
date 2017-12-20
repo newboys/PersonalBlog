@@ -14,10 +14,14 @@
 + (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;
 ```
 
+* `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray<NSRunLoopMode> *)modes;`
+
+
+
 * `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;`
 
-该方法可以执行延时方法，该方法不会阻塞主线程，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。
-
+该方法可以执行延时方法，该方法不会阻塞主线程但是只能在主线程执行，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。
+？？？？为什么只能在主线程调用
 示例:
 
 ```
@@ -30,6 +34,20 @@
 [self performSelector:@selector(yourselfDelayMethod:) withObject:@"object" afterDelay:2.0];
 ```
 
+* `+ (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget selector:(SEL)aSelector object:(nullable id)anArgument;`
+
+该方法是取消当前target，通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`注册的某个特定的方法。
+
+示例：
+
+```
+[self performSelector:@selector(yourselfDelayMethod:) withObject:@"object" afterDelay:2.0];
+[self performSelector:@selector(secondDelayMethod:) withObject:@"second" afterDelay:4.0];
+//yourselfDelayMethod方法不会执行
+[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(yourselfDelayMethod:) object:@"object"];
+```
+
+
 * `+ (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;`
 
 该方法是取消当前target的所有当前通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`所注册的方法。
@@ -41,4 +59,14 @@
 [self performSelector:@selector(secondDelayMethod:) withObject:@"second" afterDelay:4.0];
 //上面两个延时方法都不会执行
 [NSObject cancelPreviousPerformRequestsWithTarget:self];
+```
+
+#### 方法2 GCD
+
+示例：
+
+```
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    NSLog(@"gcd delay");
+});
 ```
