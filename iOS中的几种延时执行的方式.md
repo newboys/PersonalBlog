@@ -70,3 +70,8 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), di
     NSLog(@"gcd delay");
 });
 ```
+
+
+#### 参考
+
+* [iOS 高效开发-----延时执行用GCD](https://www.cnblogs.com/tianlin106/p/4517483.html)
