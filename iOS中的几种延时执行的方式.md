@@ -71,7 +71,15 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), di
 });
 ```
 
+#### 方法3 NSTimer
+
+示例：
+
+```
+NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(yourselfDelayMethod:) userInfo:nil repeats:NO];
+```
 
 #### 参考
 
 * [iOS 高效开发-----延时执行用GCD](https://www.cnblogs.com/tianlin106/p/4517483.html)
+* [NSTimer研究+一点点NSInvocation](http://www.jianshu.com/p/ba91373f7997)
