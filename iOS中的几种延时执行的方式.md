@@ -29,3 +29,16 @@
 //有参数
 [self performSelector:@selector(yourselfDelayMethod:) withObject:@"object" afterDelay:2.0];
 ```
+
+* + (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;
+
+该方法是取消当前target的所有当前通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`所注册的方法。
+
+示例：
+
+```
+[self performSelector:@selector(yourselfDelayMethod:) withObject:@"object" afterDelay:2.0];
+[self performSelector:@selector(secondDelayMethod:) withObject:@"second" afterDelay:4.0];
+//上面两个延时方法都不会执行
+[NSObject cancelPreviousPerformRequestsWithTarget:self];
+```
