@@ -92,3 +92,4 @@ timer = nil;
 
 * [iOS 高效开发-----延时执行用GCD](https://www.cnblogs.com/tianlin106/p/4517483.html)
 * [NSTimer研究+一点点NSInvocation](http://www.jianshu.com/p/ba91373f7997)
+* [performselector-Apple Document](https://developer.apple.com/documentation/objectivec/nsobject/1416176-performselector)
