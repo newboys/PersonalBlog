@@ -20,8 +20,8 @@
 
 * `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;`
 
-该方法可以执行延时方法，该方法不会阻塞主线程但是只能在主线程执行，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。
-？？？？为什么只能在主线程调用
+该方法可以执行延时方法，该方法不会阻塞线程但是只能在主线程执行，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。但该方法需要为延时执行的代码创建单独的方法。
+？？？？为什么在子线程不调用
 示例:
 
 ```
@@ -61,7 +61,11 @@
 [NSObject cancelPreviousPerformRequestsWithTarget:self];
 ```
 
-#### 方法2 GCD
+#### 方法2 GCD（推荐）
+
+使用GCD的延时方法，无论在主线程子线程都会调用，而且不用为延时代码单独创建一个方法。
+
+[取消GCD的延时方法](https://github.com/Spaceman-Labs/Dispatch-Cancel)
 
 示例：
 
@@ -73,10 +77,15 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), di
 
 #### 方法3 NSTimer
 
+该方法不会阻塞线程，但一般用于定时或倒计时操作，不用于延时。
+
 示例：
 
 ```
 NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(yourselfDelayMethod:) userInfo:nil repeats:NO];
+//释放timer
+[timer invalidate];
+timer = nil;
 ```
 
 #### 参考
