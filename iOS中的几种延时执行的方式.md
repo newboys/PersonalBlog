@@ -14,20 +14,17 @@
 + (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;
 ```
 
-* `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray<NSRunLoopMode> *)modes;`
-
-
-
 #### performSelector:withObject:afterDelay:
 
 [apple document](https://developer.apple.com/documentation/objectivec/nsobject/1416176-performselector?language=objc)
 
 * 该方法会在使用默认mode的当前线程，延时后调用你指定的selector
-* `aSelector`这个参数接受方法类型，该方法应该没有返回值且参数只有一个id类型或者无参数，若方法无参数则`anArgument`传nil
-* 
+* `aSelector`这个参数接受方法类型，该方法应该没有返回值且参数只有一个id类型或者无参数，若方法无参数则第二个参数传nil
+* 该方法的本质是在当前线程的run loop中设置一个timer来调用需要延时执行的方法，该timer配置在默认的mode（NSDefaultRunLoopMode）中执行，如果run loop不是default mode则timer会一直等等待直到run loop是default mode（详情可参见官方文档）
+* 当run loop不是default mode时，你可以使用`performSelector:withObject:afterDelay:inModes: `，如果你不确定当前线程是否为主线程时，你可以使用`performSelectorOnMainThread:withObject:waitUntilDone:`或`performSelectorOnMainThread:withObject:waitUntilDone:modes:`去回到主线程来执行你的延时方法
+* 可以通过`cancelPreviousPerformRequestsWithTarget:` 或 `cancelPreviousPerformRequestsWithTarget:selector:object: `来取消未执行`performSelector:withObject:afterDelay:`方法
+* 如果你想在dispatch queue中执行延时，你应该使用`dispatch_after`和相关的方法去达到你的预期。因为在dispatch queue中不会自动调用
 
-该方法可以执行延时方法，该方法不会阻塞主线程但是会阻塞子线程，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。但该方法需要为延时执行的代码创建单独的方法。
-？？？？为什么在子线程不调用
 示例:
 
 ```
@@ -40,9 +37,14 @@
 [self performSelector:@selector(yourselfDelayMethod:) withObject:@"object" afterDelay:2.0];
 ```
 
-* `+ (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget selector:(SEL)aSelector object:(nullable id)anArgument;`
+#### `performSelector:withObject:afterDelay:inModes:`
 
-该方法是取消当前target，通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`注册的某个特定的方法。
+*
+
+#### ` cancelPreviousPerformRequestsWithTarget:selector:object: `
+
+* 该方法是取消当前target，通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`注册的某个特定的方法。
+* All perform requests are canceled that have the same target as aTarget, argument as anArgument, and selector as aSelector. This method removes perform requests only in the current run loop, not all run loops.
 
 示例：
 
@@ -54,9 +56,9 @@
 ```
 
 
-* `+ (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget;`
+#### `cancelPreviousPerformRequestsWithTarget:`
 
-该方法是取消当前target的所有当前通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`所注册的方法。
+* 该方法是取消当前target的所有当前通过`- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay`所注册的方法。
 
 示例：
 
@@ -93,6 +95,10 @@ NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selecto
 [timer invalidate];
 timer = nil;
 ```
+
+#### 总结
+
+* 为甚在子线程中`performSelector:withObject:afterDelay:`不起作用？
 
 #### 参考
 
