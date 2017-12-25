@@ -20,7 +20,7 @@
 
 * `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;`
 
-该方法可以执行延时方法，该方法不会阻塞线程但是只能在主线程执行，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。但该方法需要为延时执行的代码创建单独的方法。
+该方法可以执行延时方法，该方法不会阻塞主线程但是会阻塞子线程，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。但该方法需要为延时执行的代码创建单独的方法。
 ？？？？为什么在子线程不调用
 示例:
 
