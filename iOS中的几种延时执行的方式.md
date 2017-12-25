@@ -18,7 +18,13 @@
 
 
 
-#### `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;`
+#### performSelector:withObject:afterDelay:
+
+[apple document](https://developer.apple.com/documentation/objectivec/nsobject/1416176-performselector?language=objc)
+
+* 该方法会在使用默认mode的当前线程，延时后调用你指定的selector
+* `aSelector`这个参数接受方法类型，该方法应该没有返回值且参数只有一个id类型或者无参数，若方法无参数则`anArgument`传nil
+* 
 
 该方法可以执行延时方法，该方法不会阻塞主线程但是会阻塞子线程，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。但该方法需要为延时执行的代码创建单独的方法。
 ？？？？为什么在子线程不调用
