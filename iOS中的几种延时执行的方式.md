@@ -45,7 +45,7 @@
 示例：
 
 ```
-[self performSelector:@selector(yourselfDelayMethod:) withObject:@"mode" afterDelay:2.0 inModes:[NSDefaultRunLoopMode]];
+[self performSelector:@selector(yourselfDelayMethod:) withObject:@"mode" afterDelay:2.0 inModes:@[NSDefaultRunLoopMode]];
 ```
 
 #### ` cancelPreviousPerformRequestsWithTarget:selector:object: `
