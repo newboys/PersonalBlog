@@ -1,9 +1,9 @@
 
-### iOS 中几种延时执行的几种方式
+## iOS 中几种延时执行的几种方式
 
 在做项目的时候，总会时不时碰到延时执行某个方法的需求，所以在这里总结一下iOS中所有的延时方法。
 
-#### 方法1：performSelector
+### 方法1：performSelector
 
 在Apple的文档中。我们可以看到performSelector相关的方法一共有四个:
 
@@ -18,7 +18,7 @@
 
 
 
-* `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;`
+#### `- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;`
 
 该方法可以执行延时方法，该方法不会阻塞主线程但是会阻塞子线程，可以通过`cancelPreviousPerformRequestsWithTarget`方法取消。但该方法需要为延时执行的代码创建单独的方法。
 ？？？？为什么在子线程不调用
