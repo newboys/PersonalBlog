@@ -28,3 +28,7 @@ http://mingxianwei.github.io/2016/05/27/iOS%E4%B8%AD%E6%B1%82%E5%87%BAlabel%E4%B
 
 Q:Git, fatal: The remote end hung up unexpectedly
 A:[stackoverflow](https://stackoverflow.com/questions/15240815/git-fatal-the-remote-end-hung-up-unexpectedly)
+
+Q:ios 打包时遇到的问题 The binary file 'BInterestStreet.app/EmptyView.o' is not permitted. 
+A:[so](https://stackoverflow.com/questions/20251252/invalid-bundle-structure-the-app-may-contain-only-one-executable-file)
+删除Copy Bundle Resources相应的文件
