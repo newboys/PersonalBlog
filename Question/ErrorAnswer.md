@@ -35,5 +35,11 @@ A:[so](https://stackoverflow.com/questions/20251252/invalid-bundle-structure-the
 
 Q:小数和整数显示问题
 
+```
+    NSString *moneyStr = [NSString stringWithFormat:@"%.2lf", money];
+    moneyStr = [NSDecimalNumber decimalNumberWithString:moneyStr].stringValue;
+    NSString *text = [NSString stringWithFormat:@"小计  ￥%@", moneyStr];
+```
+
 Q:控件约束不能依赖同等级固定位置的控件？
 比如同一视图下，一个不固定位置的label依赖于一个固定位置的button
