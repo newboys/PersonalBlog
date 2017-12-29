@@ -34,3 +34,6 @@ A:[so](https://stackoverflow.com/questions/20251252/invalid-bundle-structure-the
 删除Copy Bundle Resources相应的文件
 
 Q:小数和整数显示问题
+
+Q:控件约束不能依赖同等级固定位置的控件？
+比如同一视图下，一个不固定位置的label依赖于一个固定位置的button
