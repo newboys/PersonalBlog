@@ -43,3 +43,11 @@ Q:小数和整数显示问题
 
 Q:控件约束不能依赖同等级固定位置的控件？
 比如同一视图下，一个不固定位置的label依赖于一个固定位置的button
+
+Q:富文本文字居中（如同一行前后字体大小不一致，他们会底部对齐）
+
+```
+NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@ ", [NSString reviseString:_priceMoney]] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:21],NSForegroundColorAttributeName:[UIColor whiteColor]}];    
+NSAttributedString *atr1 = [[NSAttributedString alloc]initWithString:@"确认支付" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor whiteColor], NSBaselineOffsetAttributeName:@(1.5)}];
+[attribute appendAttributedString:atr1];
+```
