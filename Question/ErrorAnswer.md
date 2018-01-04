@@ -51,3 +51,12 @@ NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc]initWit
 NSAttributedString *atr1 = [[NSAttributedString alloc]initWithString:@"确认支付" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor whiteColor], NSBaselineOffsetAttributeName:@(1.5)}];
 [attribute appendAttributedString:atr1];
 ```
+
+Q:设置换行缩进
+
+```
+ NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+ paraStyle.alignment = NSTextAlignmentLeft;  //对齐
+ paraStyle.headIndent = _useCouponLabel.font.pointSize * 7.4;
+ NSAttributedString *attrText;
+```
