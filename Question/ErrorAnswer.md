@@ -60,3 +60,5 @@ Q:设置换行缩进
  paraStyle.headIndent = _useCouponLabel.font.pointSize * 7.4;
  NSAttributedString *attrText;
 ```
+
+Q:iOS 9 'Application tried to present modally an active controller <BIPhotoViewController: 0x7f9cf40602a0>.'
