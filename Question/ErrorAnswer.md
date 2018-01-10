@@ -62,3 +62,6 @@ Q:设置换行缩进
 ```
 
 Q:iOS 9 'Application tried to present modally an active controller <BIPhotoViewController: 0x7f9cf40602a0>.'
+
+
+Q:tableview cell初始化方式dequeueReusableCellWithIdentifier和alloc的区别
