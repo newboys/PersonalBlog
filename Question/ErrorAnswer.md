@@ -65,3 +65,7 @@ Q:iOS 9 'Application tried to present modally an active controller <BIPhotoViewC
 
 
 Q:tableview cell初始化方式dequeueReusableCellWithIdentifier和alloc的区别
+
+Q:适配iPhone X Push过程中TabBar位置上移
+
+http://blog.csdn.net/xuyang844175181/article/details/78134552
