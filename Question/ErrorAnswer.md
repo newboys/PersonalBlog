@@ -69,3 +69,10 @@ Q:tableview cell初始化方式dequeueReusableCellWithIdentifier和alloc的区�
 Q:适配iPhone X Push过程中TabBar位置上移
 
 http://blog.csdn.net/xuyang844175181/article/details/78134552
+
+Q: 两者的区别？
+Different:In a UIViewController, title and navigationItem.title are different. One example: if you have a view controller (in a NavigationController) in a UITabBarController, then if you set self.title it overrides the name of the tab as well as the top title. If you set self.navigationItem.title then it only changes the top title, leaving the tab bar name unchanged.
+```
+self.title = @"新动态";
+self.navigationItem.title = @"新动态";
+```
