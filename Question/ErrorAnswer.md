@@ -76,3 +76,5 @@ Different:In a UIViewController, title and navigationItem.title are different. O
 self.title = @"新动态";
 self.navigationItem.title = @"新动态";
 ```
+
+Q:九宫格算行数？
