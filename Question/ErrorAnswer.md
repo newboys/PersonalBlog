@@ -78,3 +78,5 @@ self.navigationItem.title = @"新动态";
 ```
 
 Q:九宫格算行数？
+
+Q:NSURLConnection finished with error - code -1002
