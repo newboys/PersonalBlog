@@ -80,3 +80,6 @@ self.navigationItem.title = @"新动态";
 Q:九宫格算行数？
 
 Q:NSURLConnection finished with error - code -1002
+
+Q: EXC_BAD_ACCESS (code=EXC_I386_GPFLT).
+The process has been returned to the state before expression evaluation
