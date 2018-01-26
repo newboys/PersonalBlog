@@ -83,3 +83,5 @@ Q:NSURLConnection finished with error - code -1002
 
 Q: EXC_BAD_ACCESS (code=EXC_I386_GPFLT).
 The process has been returned to the state before expression evaluation
+
+Q: 去除按钮高亮 - `adjustsImageWhenHighlighted`
