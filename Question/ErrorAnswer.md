@@ -87,3 +87,5 @@ The process has been returned to the state before expression evaluation
 Q: 去除按钮高亮 - `adjustsImageWhenHighlighted`
 
 Q: `Category is implementing a method which will also be implemented by its primary class`
+
+Q:`reason: 'attempt to delete row 1 from section 13 which only contains 1 rows before the update`
