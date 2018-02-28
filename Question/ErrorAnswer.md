@@ -92,4 +92,4 @@ Q:`reason: 'attempt to delete row 1 from section 13 which only contains 1 rows b
 
 Q: 截取视频图片第一帧
 
-Q:UILabel 距下对齐
+Q:UILabel 距下对齐 http://blog.csdn.net/yj_sail/article/details/70173987
