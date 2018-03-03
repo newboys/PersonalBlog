@@ -93,3 +93,11 @@ Q:`reason: 'attempt to delete row 1 from section 13 which only contains 1 rows b
 Q: 截取视频图片第一帧
 
 Q:UILabel 距下对齐 http://blog.csdn.net/yj_sail/article/details/70173987
+
+Q:Xcode 9: “An error occurred uploading to the iTunes Store.An error occurred while starting bundles for the software update process”
+
+A: Open the terminal and run these commands: [link](https://stackoverflow.com/questions/46463778/xcode-9-an-error-occurred-uploading-to-the-itunes-store#)
+```
+cd ~
+mv .itmstransporter/ .old_itmstransporter/
+```
