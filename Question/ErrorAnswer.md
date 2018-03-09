@@ -101,3 +101,5 @@ A: Open the terminal and run these commands: [link](https://stackoverflow.com/qu
 cd ~
 mv .itmstransporter/ .old_itmstransporter/
 ```
+
+* The process has been return to the state before expression evaluation
