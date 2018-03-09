@@ -102,4 +102,6 @@ cd ~
 mv .itmstransporter/ .old_itmstransporter/
 ```
 
-* The process has been return to the state before expression evaluation
+* EXC_BAD_ACCESS(code=EXC_I386_GPFLT The process has been return to the state before expression evaluation
+
+A:访问了被释放的对象
