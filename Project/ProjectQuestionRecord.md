@@ -228,6 +228,20 @@ public func navigationController(_ navigationController: UINavigationController,
 
 *  创建桥接文件 [Link](http://blog.csdn.net/kangli_1990/article/details/51718459)
 *  swift中的MBProgressHUD [Link](http://www.jianshu.com/p/cd81bcdef64f)
+* 上方1px的黑线如何去掉
+
+```
+CGRect rect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self setBackgroundImage:img];
+    [self setShadowImage:img];
+    [self setBackgroundColor:[UIColor whiteColor]];
+```
 
 ### UILabel
 * 居上对齐
@@ -426,3 +440,16 @@ cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, kScreenWidth);
 
 * 模态控制器的style `test.modalPresentationStyle = UIModalPresentationOverCurrentContext;`
 * UIImageView 根据中心店旋转
+
+* UIWebView 预览本地文件https://github.com/vfr/Reader
+
+取消webview粘贴复制
+
+```
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    // Disable user selection
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+    // Disable callout
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+}
+```
