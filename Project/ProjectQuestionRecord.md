@@ -3,18 +3,18 @@
 ### 搭建pch文件
 * [iOS开发之Xcode8下新建pch文件](http://www.jianshu.com/p/337b92c28a86)
 
-### Question
-* [iOS导航控制器push/pop出现黑色阴影问题](http://www.jianshu.com/p/6e75a5fa9760)
+### UI
 * 生成APPicon1024*1024 [AppIcon](https://github.com/Nonchalant/AppIcon)
 
-### 导航栏
+#### UINavigationController
 
-#### 修改导航栏颜色
+* 修改导航栏颜色
 ```
 navigationBar.barTintColor = UIColor.colorWithHexString("5bc4e7")
 ```
 
-#### 隐藏导航栏下1px黑线     [Link](http://blog.it985.com/9808.html)
+* [iOS导航控制器push/pop出现黑色阴影问题](http://www.jianshu.com/p/6e75a5fa9760)
+* 隐藏导航栏下1px黑线     [Link](http://blog.it985.com/9808.html)
 ```
 var navigationBarBottomLine = UIImageView()
     
@@ -59,9 +59,9 @@ viewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", st
 
 ```
 
-
 * tintColor/barTintColor
-## UIButton
+
+#### UIButton
 * 取消高亮
 [Link](http://www.cnblogs.com/tinych/p/6520593.html)
 ```
@@ -102,7 +102,7 @@ shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 100, 
 btn.layer.mask = shapeLayer;
 ```
 
-## UITableView
+#### UITableView
 
 * 取消tableview顶部空白
 ```
@@ -213,7 +213,7 @@ func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange
  }
 ```
 
-### TabBar
+#### TabBar
 
 * 自定义Tabbar重叠问题 [Link](http://www.jianshu.com/p/ed9dcf87086f)
 ```
