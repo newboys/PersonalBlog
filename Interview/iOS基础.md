@@ -1,3 +1,18 @@
+## @property后面可以有哪些修饰符
+* atomic/nonatomic/strong/copy/assign/weak/readwirte/readonly
+* atomic 的本意是指属性的存取方法是线程安全的，并不保证整个对象是线程安全的,需要加互斥锁
+* 默认基本数据：atomic,readwrite,assign；普通的OC对象：atomic,readwrite,strong
+
+## @synthesize 和 @dynamic分别有什么作用
+* @property有两个对应的词，一个是@synthesize，一个是@dynamic。如果@synthesize和@dynamic都没写，那么默认的就是@syntheszie var = _var;
+* @synthesize的语义是如果你没有手动实现setter方法和getter方法，那么编译器会自动为你加上这两个方法
+* @dynamic 的意思是再别的地方实现，如果你自己实现了访问器则没必要用@dynamic
+`Not really, @dynamic means to responsibility of implementing the accessors is delegated. If you implement the accessors yourself within the class then you normally do not use @dynamic`
+
+### link
+* [so](https://stackoverflow.com/questions/1160498/synthesize-vs-dynamic-what-are-the-differences)
+* [apple](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtDynamicResolution.html)
+
 ## Category 和 Extension 的区别
 ### Category
 * 源码:
@@ -56,3 +71,26 @@ Tip:并没有存放属性的地方
 
 ## Objective-C使用什么机制管理对象内存？
 * 使用ARC，通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的retainCount，如果retainCount为0，说明该对象没有地方需要继续使用了，可以释放掉了
+
+## ARC下还会存在内存泄露吗？
+* 循环引用会导致内存泄漏
+* CoreFoundation中的对象不受ARC管理，需要开发者手动释放
+
+## property的本质是什么
+* 它的本质是在编译期间自动生成ivar、set方法、get方法
+
+## @protocol 和 category 中如何使用 @property
+* category 使用 @property也是只会生成setter和getter方法声明,如果我们真的需要给category增加属性的实现,需要借助于运行时的两个函数,这两个函数并没有生成实例变量
+```
+objc_setAssociatedObject
+objc_getAssociatedObject
+```
+
+* 在protocol中使用property只会生成setter和getter方法声明,我们使用属性的目的,是希望遵守我协议的对象能实现该属性
+
+
+## ivar、getter、setter是如何生成并添加到这个类中的？
+* 这个过程由编译器在编译阶段执行自动合成，所以编辑器里看不到这些“合成方法”(synthesized method)的源代码
+* 每次增加一个属性，系统都会在ivar_list中添加一个成员变量的描述、在method_list中增加setter与getter方法的描述、在prop_list中增加一个属性的描述
+* 计算该属性在对象中的偏移量
+* 然后给出setter与getter方法对应的实现,在setter方法中从偏移量的位置开始赋值,在getter方法中从偏移量开始取值,为了能够读取正确字节数,系统对象偏移量的指针类型进行了类型强转
