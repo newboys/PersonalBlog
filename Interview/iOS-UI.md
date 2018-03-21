@@ -33,3 +33,9 @@ UIView包含CALayer，每个UIView都有一个自己的主Layer，UIView负责�
 * 每次创建cell的时候通过dequeueReusableCellWithIdentifier:方法创建cell，它先到缓存池中找指定标识的cell，如果没有就直接返回nil
 * 如果没有找到指定标识的cell，那么会通过initWithStyle:reuseIdentifier:创建一个cell
 * 当cell离开界面就会被放到缓存池中，以供下次复用
+
+## 如何高性能的给 UIImageView 加个圆角?
+* 绘图
+* UIBezierPath
+
+## 描述下SDWebImage里面给UIImageView加载图片的逻辑

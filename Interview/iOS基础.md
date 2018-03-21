@@ -9,6 +9,11 @@
 * @dynamic 的意思是再别的地方实现，如果你自己实现了访问器则没必要用@dynamic
 `Not really, @dynamic means to responsibility of implementing the accessors is delegated. If you implement the accessors yourself within the class then you normally do not use @dynamic`
 
+### @synthesize有哪些使用场景
+* 首先的搞清楚什么情况下不会autosynthesis（自动合成）/同时重写了setter和getter时/重写了只读属性的getter时/使用了@dynamic时/在 @protocol 中定义的所有属性/在 category 中定义的所有属性/重载的属性，当你在子类中重载了父类中的属性，必须使用@synthesize来手动合成ivar
+* 使用@synthesize foo = _foo;，关联@property与ivar
+* 可以用来修改成员变量名，一般不建议这么做，建议使用系统自动生成的成员变量
+
 ### link
 * [so](https://stackoverflow.com/questions/1160498/synthesize-vs-dynamic-what-are-the-differences)
 * [apple](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtDynamicResolution.html)
@@ -94,3 +99,10 @@ objc_getAssociatedObject
 * 每次增加一个属性，系统都会在ivar_list中添加一个成员变量的描述、在method_list中增加setter与getter方法的描述、在prop_list中增加一个属性的描述
 * 计算该属性在对象中的偏移量
 * 然后给出setter与getter方法对应的实现,在setter方法中从偏移量的位置开始赋值,在getter方法中从偏移量开始取值,为了能够读取正确字节数,系统对象偏移量的指针类型进行了类型强转
+
+## KVO、KVC
+* KVC :key value coding是一种间接访问实例变量的方法,通过`setvalue:forkey`来设置值，通过`valueforkey`来获取值,如果仍未找到,则调用 `valueForUndefinedKey: `和 `setValue: forUndefinedKey: `方法。这些方法的默认实现都是抛出异常,
+* KVO:监听一个对象de 某属性发生变化-1.注册观察者、2.实现`observeValueForKeyPath`、3.移除观察者`removeObserver`
+* KVO 底层实现原理是系统给当前类创建子类 , 在子类 setter 方法调用父类的 setter 方法
+通过修改 isa 指针指向系统创建的子类 实现当前类属性值改变的监听
+
