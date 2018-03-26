@@ -105,3 +105,5 @@ mv .itmstransporter/ .old_itmstransporter/
 * EXC_BAD_ACCESS(code=EXC_I386_GPFLT The process has been return to the state before expression evaluation
 
 A:访问了被释放的对象
+
+Q:git this exceeds file size limit of 100.0 MB
