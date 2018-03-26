@@ -38,4 +38,5 @@ UIView包含CALayer，每个UIView都有一个自己的主Layer，UIView负责�
 * 绘图
 * UIBezierPath
 
-## 描述下SDWebImage里面给UIImageView加载图片的逻辑
+## 如何渲染UIlabel上的文字
+* 通过NSAttributedString/NSMutableAttributedString

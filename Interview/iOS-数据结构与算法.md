@@ -59,6 +59,24 @@ print(bubbleSort(arr: &arr, length: 4))
 ```
 
 ## 二分法
+* Swift
+```
+func bisectionFunc(nums: [Int], key: Int) -> Int? {
+    var left = 0
+    var right = nums.count - 1
+    while left <= right {
+        let mid = (left + right)/2
+        if nums[mid] == key {
+            return mid
+        } else if nums[mid] > key {
+            right = right - 1
+        } else {
+            left = left + 1
+        }
+    }
+    return nil
+}
+```
 
 ## Extension
 * [github](https://github.com/CyC2018/Interview-Notebook)

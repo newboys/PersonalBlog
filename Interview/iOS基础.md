@@ -106,3 +106,18 @@ objc_getAssociatedObject
 * KVO 底层实现原理是系统给当前类创建子类 , 在子类 setter 方法调用父类的 setter 方法
 通过修改 isa 指针指向系统创建的子类 实现当前类属性值改变的监听
 
+## Copy/MutableCopy
+* 对于非集合类型，只有不可变的copy是指针复制，其他都是内容复制
+```
+[immutableObject copy] // 浅复制
+[immutableObject mutableCopy] //深复制
+[mutableObject copy] //深复制
+[mutableObject mutableCopy] //深复制
+```
+* 对于集合类型，也是只有immutable对象的copy是指针复制，其他都是内容复制。但是集合对象的内容复制仅限于对象本身，对象元素仍然是指针复制
+```
+[immutableObject copy] // 浅复制
+[immutableObject mutableCopy] //单层深复制
+[mutableObject copy] //单层深复制
+[mutableObject mutableCopy] //单层深复制
+```
