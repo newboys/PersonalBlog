@@ -111,3 +111,20 @@ Q:git this exceeds file size limit of 100.0 MB
 A: 1.如果没有push则按照博客执行`https://www.cnblogs.com/XYQ-208910/p/6141603.html` 2.若已经push，则删掉.git文件重新创建git仓库(按照文档中忽略那个不成功不知道为什么)
 
 Q:UISearchBar [jianshu](https://www.jianshu.com/p/7e49a1c656e7)
+
+Q: 新版本Xcode (9.3) CocoaPod issue
+```
+最近电脑出了问题，拿去维修，回来后发现cocoapods不能用了，尴尬。
+
+终端输入 
+sudo gem update –system 
+显示如下错误 
+ERROR: While executing gem … (Gem::FilePermissionError) 
+You don’t have write permissions for the /usr/bin directory.
+
+网上看到解决方法：
+
+重新输入下面 
+sudo gem install -n /usr/local/bin sass 
+sudo gem install -n /usr/local/bin cocoapods
+```
